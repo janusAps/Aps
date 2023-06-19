@@ -46,29 +46,23 @@
         counter3.style.fontSize = `${fontSize}px`;
       }
 
-      // Increment counters based on keypress
+      // Increment or decrement counters based on keypress
       function handleKeyPress(event) {
         const key = event.key;
 
         if (key === '1') {
-          if (event.shiftKey) {
-            count1--;
-          } else {
-            count1++;
-          }
+          count1++;
         } else if (key === '2') {
-          if (event.shiftKey) {
-            count2--;
-          } else {
-            count2++;
-          }
+          count2++;
         } else if (key === '3') {
-          if (event.shiftKey) {
-            count3--;
-          } else {
-            count3++;
-          }
-        } else if (key === '0' && event.shiftKey) {
+          count3++;
+        } else if (key === '4') {
+          count1--;
+        } else if (key === '5') {
+          count2--;
+        } else if (key === '6') {
+          count3--;
+        } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
           count2 = 0;
