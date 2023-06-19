@@ -3,7 +3,6 @@
   <head>
     <style>
       .counter {
-        font-size: 48px;
         margin-bottom: 10px;
       }
     </style>
@@ -24,11 +23,19 @@
       let count2 = 0;
       let count3 = 0;
 
-      // Update counter values on the screen
+      // Update counter values and font sizes on the screen
       function updateCounters() {
+        const maxWidth = window.innerWidth * 0.9; // Maximum width for the counters
+        const fontSize = Math.floor(maxWidth / 8); // Adjust the font size based on the width
+
         counter1.textContent = count1;
+        counter1.style.fontSize = `${fontSize}px`;
+
         counter2.textContent = count2;
+        counter2.style.fontSize = `${fontSize}px`;
+
         counter3.textContent = count3;
+        counter3.style.fontSize = `${fontSize}px`;
       }
 
       // Increment counters based on keypress
@@ -47,6 +54,9 @@
 
       // Attach event listener to the document for keypress events
       document.addEventListener('keypress', handleKeyPress);
+
+      // Call the updateCounters function initially to set the font sizes
+      updateCounters();
     </script>
   </body>
 </html>
