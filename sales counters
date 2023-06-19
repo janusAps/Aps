@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .counter {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter" id="counter1">0</div>
+    <div class="counter" id="counter2">0</div>
+    <div class="counter" id="counter3">0</div>
+
+    <script>
+      // Get references to the counter elements
+      const counter1 = document.getElementById('counter1');
+      const counter2 = document.getElementById('counter2');
+      const counter3 = document.getElementById('counter3');
+
+      // Initialize counters
+      let count1 = 0;
+      let count2 = 0;
+      let count3 = 0;
+
+      // Update counter values on the screen
+      function updateCounters() {
+        counter1.textContent = count1;
+        counter2.textContent = count2;
+        counter3.textContent = count3;
+      }
+
+      // Increment counters based on keypress
+      function handleKeyPress(event) {
+        const key = event.key;
+        if (key === '1') {
+          count1++;
+        } else if (key === '2') {
+          count2++;
+        } else if (key === '3') {
+          count3++;
+        }
+
+        updateCounters();
+      }
+
+      // Attach event listener to the document for keypress events
+      document.addEventListener('keypress', handleKeyPress);
+    </script>
+  </body>
+</html>
