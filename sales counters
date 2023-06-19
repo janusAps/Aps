@@ -49,12 +49,30 @@
       // Increment counters based on keypress
       function handleKeyPress(event) {
         const key = event.key;
+
         if (key === '1') {
-          count1++;
+          if (event.shiftKey) {
+            count1--;
+          } else {
+            count1++;
+          }
         } else if (key === '2') {
-          count2++;
+          if (event.shiftKey) {
+            count2--;
+          } else {
+            count2++;
+          }
         } else if (key === '3') {
-          count3++;
+          if (event.shiftKey) {
+            count3--;
+          } else {
+            count3++;
+          }
+        } else if (key === '0' && event.shiftKey) {
+          // Reset all counters to zero
+          count1 = 0;
+          count2 = 0;
+          count3 = 0;
         }
 
         updateCounters();
