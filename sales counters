@@ -37,7 +37,7 @@
         const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
 
         counter1.textContent = count1;
-        counter1.style.fontSize = `${fontSize}px`;
+        counter1.style.fontSize = 200;
 
         counter2.textContent = count2;
         counter2.style.fontSize = `${fontSize}px`;
