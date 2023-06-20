@@ -37,13 +37,13 @@
         const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
 
         counter1.textContent = count1;
-        counter1.style.fontSize = 200;
+        counter1.style.fontSize = 300;
 
         counter2.textContent = count2;
-        counter2.style.fontSize = `${fontSize}px`;
+        counter2.style.fontSize = 300;
 
         counter3.textContent = count3;
-        counter3.style.fontSize = `${fontSize}px`;
+        counter3.style.fontSize = 300;
       }
 
       // Increment or decrement counters based on keypress
