@@ -3,14 +3,14 @@
   <head>
     <style>
       body {
-        background-color: #1a4e70;
+        background-color: #1e4e70;
         font-family: 'Arial Black', sans-serif;
       }
 
       .counter {
         color: #ffd900;
         margin-bottom: 10px;
-        font-size: 20vh;
+        font-size: 10vh;
         font-weight: bold;
       }
     </style>
@@ -36,14 +36,14 @@
         const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
         const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
 
-        counter1.textContent = count1;
-        counter1.style.fontSize = 300;
+        counter1.textContent = `${count1} Ben`;
+        counter1.style.fontSize = `${fontSize}px`;
 
-        counter2.textContent = count2;
-        counter2.style.fontSize = 300;
+        counter2.textContent = `${count2} Marc`;
+        counter2.style.fontSize = `${fontSize}px`;
 
-        counter3.textContent = count3;
-        counter3.style.fontSize = 300;
+        counter3.textContent = `${count3} Jenna`;
+        counter3.style.fontSize = `${fontSize}px`;
       }
 
       // Increment or decrement counters based on keypress
