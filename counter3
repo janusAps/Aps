@@ -34,7 +34,7 @@
       // Update counter values and font sizes on the screen
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
-        const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
+        const fontSize = Math.floor(maxHeight / 5); // Adjust the font size based on the height
 
         counter1.textContent = `${count1} Eve`;
         counter1.style.fontSize = 300;
