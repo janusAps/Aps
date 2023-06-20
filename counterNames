@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #1a4e70;
+        font-family: 'Arial Black', sans-serif;
+      }
+
+      .counter {
+        color: #ffd900;
+        margin-bottom: 10px;
+        font-size: 20vh;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter" id="counter1">0 Ben</div>
+    <div class="counter" id="counter2">0 Marc</div>
+    <div class="counter" id="counter3">0 Jenna</div>
+
+    <script>
+      // Get references to the counter elements
+      const counter1 = document.getElementById('counter1');
+      const counter2 = document.getElementById('counter2');
+      const counter3 = document.getElementById('counter3');
+
+      // Initialize counters
+      let count1 = 0;
+      let count2 = 0;
+      let count3 = 0;
+
+      // Update counter values and font sizes on the screen
+      function updateCounters() {
+        const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
+        const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
+
+        counter1.textContent = count1;
+        counter1.style.fontSize = 300;
+
+        counter2.textContent = count2;
+        counter2.style.fontSize = 300;
+
+        counter3.textContent = count3;
+        counter3.style.fontSize = 300;
+      }
+
+      // Increment or decrement counters based on keypress
+      function handleKeyPress(event) {
+        const key = event.key;
+
+        if (key === '1') {
+          count1++;
+        } else if (key === '2') {
+          count2++;
+        } else if (key === '3') {
+          count3++;
+        } else if (key === '4') {
+          count1--;
+        } else if (key === '5') {
+          count2--;
+        } else if (key === '6') {
+          count3--;
+        } else if (key === '0') {
+          // Reset all counters to zero
+          count1 = 0;
+          count2 = 0;
+          count3 = 0;
+        }
+
+        updateCounters();
+      }
+
+      // Attach event listener to the document for keypress events
+      document.addEventListener('keypress', handleKeyPress);
+
+      // Call the updateCounters function initially to set the font sizes
+      updateCounters();
+    </script>
+  </body>
+</html>
