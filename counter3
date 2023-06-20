@@ -16,9 +16,9 @@
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Ben</div>
-    <div class="counter" id="counter2">0 Marc</div>
-    <div class="counter" id="counter3">0 Jenna</div>
+    <div class="counter" id="counter1">0</div>
+    <div class="counter" id="counter2">0</div>
+    <div class="counter" id="counter3">0</div>
 
     <script>
       // Get references to the counter elements
@@ -31,20 +31,19 @@
       let count2 = 0;
       let count3 = 0;
 
- 
       // Update counter values and font sizes on the screen
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
         const fontSize = Math.floor(maxHeight / 8); // Adjust the font size based on the height
 
-        counter1.textContent = `${count1} Eve`;
-        counter1.style.fontSize = 300;
+        counter1.textContent = count1;
+        counter1.style.fontSize = `${fontSize}px`;
 
-        counter2.textContent = `${count2} Michael`;
-        counter2.style.fontSize = 300;
+        counter2.textContent = count2;
+        counter2.style.fontSize = `${fontSize}px`;
 
-        counter3.textContent = `${count3} Andy`;
-        counter3.style.fontSize = 300;
+        counter3.textContent = count3;
+        counter3.style.fontSize = `${fontSize}px`;
       }
 
       // Increment or decrement counters based on keypress
