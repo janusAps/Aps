@@ -10,7 +10,7 @@
       .counter {
         color: #ffd900;
         margin-bottom: 10px;
-        font-size: 48px;
+        font-size: 200px;
         font-weight: bold;
       }
     </style>
