@@ -16,9 +16,9 @@
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Ben</div>
-    <div class="counter" id="counter2">0 Marc</div>
-    <div class="counter" id="counter3">0 Jenna</div>
+    <div class="counter" id="counter1">0 Eve</div>
+    <div class="counter" id="counter2">0 Michael</div>
+    <div class="counter" id="counter3">0 Andy</div>
 
     <script>
       // Get references to the counter elements
