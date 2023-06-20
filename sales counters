@@ -3,14 +3,14 @@
   <head>
     <style>
       body {
-        background-color: #1e4e70;
+        background-color: #1a4e70;
         font-family: 'Arial Black', sans-serif;
       }
 
       .counter {
         color: #ffd900;
         margin-bottom: 10px;
-        font-size: 30vh;
+        font-size: 20vh;
         font-weight: bold;
       }
     </style>
