@@ -1,0 +1,67 @@
+const numberDisplay = document.getElementById('number');
+let count = 10;
+
+const updateNumberDisplay = () => {
+    numberDisplay.innerText = count;
+};
+
+const countdown = () => {
+    document.oncontextmenu = (e) => {
+        e.preventDefault();
+        if (count > 0) {
+            count--;
+            updateNumberDisplay();
+            document.getElementById('audio').play();
+        }
+    };
+};
+
+const resetCount = () => {
+    document.addEventListener('keydown', event => {
+        if (event.code === 'Space') {
+            event.preventDefault();
+            count = 10;
+            updateNumberDisplay();
+        }
+    });
+};
+
+const toggleFullScreen = () => {
+    if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+        if (document.documentElement.requestFullScreen) {
+            document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+            /* Firefox */
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+            /* Chrome, Safari & Opera */
+            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (document.msRequestFullscreen) {
+            /* IE/Edge */
+            document.documentElement.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            /* Chrome, Safari and Opera */
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+};
+
+document.addEventListener('keydown', event => {
+    if (event.code === 'Enter') {
+        toggleFullScreen();
+    }
+});
+
+updateNumberDisplay();
+countdown();
+resetCount();
