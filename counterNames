@@ -42,7 +42,7 @@ e<!DOCTYPE html>
         counter2.textContent = `${count2} Michael`;
         counter2.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter3.textContent = `${count3} Andy`;
+        counter3.textContent = `${count3} Andrew`;
         counter3.style.fontSize = `${baseFontSize * 1.5}px`;
       }
 
