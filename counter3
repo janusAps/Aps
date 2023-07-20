@@ -26,7 +26,7 @@
       const counter1 = document.getElementById('counter1');
       const counter2 = document.getElementById('counter2');
       const counter3 = document.getElementById('counter3');
-      const counter3 = document.getElementById('counter4');
+      const counter4 = document.getElementById('counter4');
 
       // Initialize counters
       let count1 = 0;
