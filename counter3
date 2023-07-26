@@ -16,8 +16,8 @@ e<!DOCTYPE html>
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Eve</div>
-    <div class="counter" id="counter2">0 Michael</div>
+    <div class="counter" id="counter1">0 Sales Team</div>
+    <div class="counter" id="counter2">0 Eve</div>
     <div class="counter" id="counter3">0 Andy</div>
     <div class="counter" id="counter4">0 Jamie</div>
 
