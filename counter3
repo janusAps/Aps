@@ -16,10 +16,10 @@ e<!DOCTYPE html>
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Meetings</div>
-    <div class="counter" id="counter2">0 Eve</div>
-    <div class="counter" id="counter3">0 Andy</div>
-    <div class="counter" id="counter4">0 Jamie</div>
+    <div class="counter" id="counter1">0 Eve</div>
+    <div class="counter" id="counter2">0 Jamie</div>
+    <div class="counter" id="counter3">0 Kady</div>
+    <div class="counter" id="counter4">0 Mavis</div>
 
     <script>
       // Get references to the counter elements
@@ -39,16 +39,16 @@ e<!DOCTYPE html>
         const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 8); // Base font size based on the height
 
-        counter1.textContent = `${count1} Meetings`;
+        counter1.textContent = `${count1} Eve`;
         counter1.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter2.textContent = `${count2} Eve`;
+        counter2.textContent = `${count2} Jamie`;
         counter2.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter3.textContent = `${count3} Andrew`;
+        counter3.textContent = `${count3} Kady`;
         counter3.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter4.textContent = `${count4} Jamie`;
+        counter4.textContent = `${count4} Mavis`;
         counter4.style.fontSize = `${baseFontSize * 1.5}px`;
       }
 
