@@ -6,7 +6,6 @@ e<!DOCTYPE html>
         background-color: #1e4e70;
         font-family: 'Arial Black', sans-serif;
       }
-
       .counter {
         color: #ffd900;
         margin-bottom: 10px;
@@ -18,64 +17,69 @@ e<!DOCTYPE html>
   <body>
     <div class="counter" id="counter1">0 Eve</div>
     <div class="counter" id="counter2">0 Jamie</div>
-    <div class="counter" id="counter3">0 All</div>
+    <div class="counter" id="counter3">0 Third</div>
+    <div class="counter" id="counter4">0 All</div>
 
     <script>
       // Get references to the counter elements
       const counter1 = document.getElementById('counter1');
       const counter2 = document.getElementById('counter2');
       const counter3 = document.getElementById('counter3');
+      const counter4 = document.getElementById('counter4');
 
       // Initialize counters
       let count1 = 0;
       let count2 = 0;
       let count3 = 0;
+      let count4 = 0;
 
       // Update counter values and font sizes on the screen
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 8); // Base font size based on the height
-
         counter1.textContent = `${count1} Eve`;
         counter1.style.fontSize = `${baseFontSize * 1.5}px`;
-
         counter2.textContent = `${count2} Jamie`;
         counter2.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter3.textContent = `${count3} All`;
+        counter3.textContent = `${count3} Third`;
         counter3.style.fontSize = `${baseFontSize * 1.5}px`;
+
+        counter4.textContent = `${count4} All`;
+        counter4.style.fontSize = `${baseFontSize * 1.5}px`;
       }
 
       // Increment or decrement counters based on keypress
       function handleKeyPress(event) {
         const key = event.key;
-
         if (key === '1') {
           count1++;
         } else if (key === '2') {
           count2++;
         } else if (key === '3') {
           count3++;
-
+        } else if (key === '4') {
+          count4++;
         } else if (key === '5') {
           count1--;
         } else if (key === '6') {
           count2--;
-        } !else if (key === '7') {
+        } else if (key === '7') {
           count3--;
+        } else if (key === '8') {
+          count4--;
         } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
           count2 = 0;
           count3 = 0;
+          count4 = 0;
         }
 
         updateCounters();
       }
-
       // Attach event listener to the document for keypress events
       document.addEventListener('keypress', handleKeyPress);
-
       // Call the updateCounters function initially to set the font sizes
       updateCounters();
     </script>
