@@ -18,7 +18,7 @@ e<!DOCTYPE html>
   <body>
     <div class="counter" id="counter1">0 Eve</div>
     <div class="counter" id="counter2">0 Jamie</div>
-    <div class="counter" id="counter3">0 Kady</div>
+    <div class="counter" id="counter3">0 Third</div>
     <div class="counter" id="counter4">0 All</div>
 
     <script>
@@ -45,8 +45,8 @@ e<!DOCTYPE html>
         counter2.textContent = `${count2} Jamie`;
         counter2.style.fontSize = `${baseFontSize * 1.5}px`;
 
-        counter3.textContent = `${count3} Kady`;
-        counter3.style.fontSize = `${baseFontSize * 1.5}px`;
+        !counter3.textContent = `${count3} Third`;
+        !counter3.style.fontSize = `${baseFontSize * 1.5}px`;
 
         counter4.textContent = `${count4} All`;
         counter4.style.fontSize = `${baseFontSize * 1.5}px`;
