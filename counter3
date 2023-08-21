@@ -18,20 +18,20 @@ e<!DOCTYPE html>
   <body>
     <div class="counter" id="counter1">0 Eve</div>
     <div class="counter" id="counter2">0 Jamie</div>
-    <div class="counter" id="counter3">0 Third</div>
+    !<div class="counter" id="counter3">0 Third</div>
     <div class="counter" id="counter4">0 All</div>
 
     <script>
       // Get references to the counter elements
       const counter1 = document.getElementById('counter1');
       const counter2 = document.getElementById('counter2');
-      const counter3 = document.getElementById('counter3');
+      !const counter3 = document.getElementById('counter3');
       const counter4 = document.getElementById('counter4');
 
       // Initialize counters
       let count1 = 0;
       let count2 = 0;
-      let count3 = 0;
+      !let count3 = 0;
       let count4 = 0;
 
       // Update counter values and font sizes on the screen
@@ -60,7 +60,7 @@ e<!DOCTYPE html>
           count1++;
         } else if (key === '2') {
           count2++;
-        } else if (key === '3') {
+        } !else if (key === '3') {
           count3++;
         } else if (key === '4') {
           count4++;
@@ -68,7 +68,7 @@ e<!DOCTYPE html>
           count1--;
         } else if (key === '6') {
           count2--;
-        } else if (key === '7') {
+        } !else if (key === '7') {
           count3--;
         } else if (key === '8') {
           count4--;
@@ -76,7 +76,7 @@ e<!DOCTYPE html>
           // Reset all counters to zero
           count1 = 0;
           count2 = 0;
-          count3 = 0;
+          !count3 = 0;
           count4 = 0;
         }
 
