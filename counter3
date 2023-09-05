@@ -39,18 +39,18 @@ e<!DOCTYPE html>
 
       // Update counter values and font sizes on the screen
       function updateCounters() {
-        const maxHeight = window.innerHeight * 0.9; // Maximum height for the counters
-        const baseFontSize = Math.floor(maxHeight / 8); // Base font size based on the height
+        const maxHeight = window.innerHeight * 0.7; // Maximum height for the counters
+        const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
         counter1.textContent = `${count1} Eve`;
         counter1.style.fontSize = `${baseFontSize * 1.3}px`;
         counter2.textContent = `${count2} Jamie`;
         counter2.style.fontSize = `${baseFontSize * 1.3}px`;
         counter3.textContent = `${count3} Mike`;
-        counter3.style.fontSize = `${baseFontSize * 1.5}px`;
+        counter3.style.fontSize = `${baseFontSize * 1.3}px`;
         counter4.textContent = `${count4} Sara`;
-        counter4.style.fontSize = `${baseFontSize * 1.5}px`;
+        counter4.style.fontSize = `${baseFontSize * 1.3}px`;
         counter5.textContent = `${count5} Jenny`;
-        counter5.style.fontSize = `${baseFontSize * 1.5}px`;
+        counter5.style.fontSize = `${baseFontSize * 1.3}px`;
       }
 
       // Increment or decrement counters based on keypress
