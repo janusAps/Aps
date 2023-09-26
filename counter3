@@ -8,7 +8,7 @@ e<!DOCTYPE html>
       }
       .counter {
         color: #ffd900;
-        margin-bottom: 7px;
+        margin-bottom: 5px;
         font-size: 9vh;
         font-weight: bold;
       }
