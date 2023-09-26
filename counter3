@@ -9,7 +9,7 @@ e<!DOCTYPE html>
       .counter {
         color: #ffd900;
         margin-bottom: 10px;
-        font-size: 10vh;
+        font-size: 8vh;
         font-weight: bold;
       }
     </style>
