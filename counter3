@@ -17,10 +17,9 @@ e<!DOCTYPE html>
   <body>
     <div class="counter" id="counter1">0 Eve</div>
     <div class="counter" id="counter2">0 Jamie</div>
-    <div class="counter" id="counter3">0 Sara</div>
-    <div class="counter" id="counter4">0 Jenny</div>
-    <div class="counter" id="counter5">0 Paul</div>
-    <div class="counter" id="counter6">0 Remy</div>
+    <div class="counter" id="counter3">0 Jenny</div>
+    <div class="counter" id="counter4">0 Paul</div>
+    <div class="counter" id="counter5">0 Remy</div>
 
     <script>
       // Get references to the counter elements
@@ -29,7 +28,6 @@ e<!DOCTYPE html>
       const counter3 = document.getElementById('counter3');
       const counter4 = document.getElementById('counter4');
       const counter5 = document.getElementById('counter5');
-      const counter6 = document.getElementById('counter6');
 
 
 
@@ -39,7 +37,6 @@ e<!DOCTYPE html>
       let count3 = 0;
       let count4 = 0;
       let count5 = 0;
-      let count6 = 0;
 
       // Update counter values and font sizes on the screen
       function updateCounters() {
@@ -49,14 +46,12 @@ e<!DOCTYPE html>
         counter1.style.fontSize = `${baseFontSize * 1.2}px`;
         counter2.textContent = `${count2} Jamie`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter3.textContent = `${count3} Sara`;
+        counter3.textContent = `${count3} Jenny`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter4.textContent = `${count4} Jenny`;
+        counter4.textContent = `${count4} Paul`;
         counter4.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter5.textContent = `${count5} Paul`;
+        counter5.textContent = `${count5} Remy`;
         counter5.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter6.textContent = `${count6} Remy`;
-        counter6.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
       // Increment or decrement counters based on keypress
@@ -73,7 +68,7 @@ e<!DOCTYPE html>
         } else if (key === '5') {
           count5++;
         } else if (key === '6') {
-          count6++;
+          count2--;
         } else if (key === '7') {
           count3--;
         } else if (key === '8') {
@@ -85,7 +80,6 @@ e<!DOCTYPE html>
           count3 = 0;
           count4 = 0;
           count5 = 0;
-          count6 = 0;
         }
 
         updateCounters();
