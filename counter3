@@ -15,8 +15,8 @@ e<!DOCTYPE html>
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Eve</div>
-    <div class="counter" id="counter2">0 Jamie</div>
+    <div class="counter" id="counter1">0 All</div>
+    <div class="counter" id="counter2">0 Eve</div>
     <div class="counter" id="counter3">0 Jenny</div>
     <div class="counter" id="counter4">0 Paul</div>
     <div class="counter" id="counter5">0 Remy</div>
@@ -42,9 +42,9 @@ e<!DOCTYPE html>
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.8; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
-        counter1.textContent = `${count1} Eve`;
+        counter1.textContent = `${count1} All`;
         counter1.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter2.textContent = `${count2} Jamie`;
+        counter2.textContent = `${count2} Eve`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
         counter3.textContent = `${count3} Jenny`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
