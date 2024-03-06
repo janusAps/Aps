@@ -15,19 +15,15 @@ e<!DOCTYPE html>
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Steve</div>
-    <div class="counter" id="counter2">0 Eve</div>
-    <div class="counter" id="counter3">0 Zee</div>
-    <div class="counter" id="counter4">0 Paul</div>
-    <div class="counter" id="counter5">0 Mark</div>
+    <div class="counter" id="counter1">0 Eve</div>
+    <div class="counter" id="counter2">0 Zee</div>
+    <div class="counter" id="counter3">0 Paul</div>
 
     <script>
       // Get references to the counter elements
       const counter1 = document.getElementById('counter1');
       const counter2 = document.getElementById('counter2');
       const counter3 = document.getElementById('counter3');
-      const counter4 = document.getElementById('counter4');
-      const counter5 = document.getElementById('counter5');
 
 
 
@@ -35,23 +31,17 @@ e<!DOCTYPE html>
       let count1 = 0;
       let count2 = 0;
       let count3 = 0;
-      let count4 = 0;
-      let count5 = 0;
-
+  
       // Update counter values and font sizes on the screen
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.8; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
-        counter1.textContent = `${count1} Steve`;
+        counter1.textContent = `${count2} Eve`;
         counter1.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter2.textContent = `${count2} Eve`;
+        counter2.textContent = `${count3} Zee`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter3.textContent = `${count3} Zee`;
+        counter3.textContent = `${count4} Paul`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter4.textContent = `${count4} Paul`;
-        counter4.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter5.textContent = `${count5} Mark`;
-        counter5.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
       // Increment or decrement counters based on keypress
@@ -63,23 +53,17 @@ e<!DOCTYPE html>
           count2++;
         } else if (key === '3') {
           count3++;
-        } else if (key === '4') {
-          count4++;
-        } else if (key === '5') {
-          count5++;
         } else if (key === '6') {
-          count2--;
+          count1--;
         } else if (key === '7') {
-          count3--;
+          count2--;
         } else if (key === '8') {
-          count4--;
+          count3--;
         } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
           count2 = 0;
           count3 = 0;
-          count4 = 0;
-          count5 = 0;
         }
 
         updateCounters();
