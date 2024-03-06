@@ -36,11 +36,11 @@ e<!DOCTYPE html>
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.8; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
-        counter1.textContent = `${count2} Eve`;
+        counter1.textContent = `${count1} Eve`;
         counter1.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter2.textContent = `${count3} Zee`;
+        counter2.textContent = `${count2} Zee`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter3.textContent = `${count4} Paul`;
+        counter3.textContent = `${count3} Paul`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
