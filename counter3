@@ -27,7 +27,7 @@ e<!DOCTYPE html>
       const counter2 = document.getElementById('counter2');
       const counter3 = document.getElementById('counter3');
       const counter4 = document.getElementById('counter4');
-      const counter4 = document.getElementById('counter5');
+      const counter5 = document.getElementById('counter5');
 
 
 
