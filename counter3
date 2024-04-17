@@ -62,7 +62,7 @@ e<!DOCTYPE html>
         counter5.style.fontSize = `${baseFontSize * 1.2}px`;
         counter6.textContent = `${count6} Harry`;
         counter6.style.fontSize = `${baseFontSize * 1.2}px`;
-        counter7.textContent = `${count6} Mia`;
+        counter7.textContent = `${count7} Mia`;
         counter7.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
