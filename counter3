@@ -64,7 +64,6 @@ e<!DOCTYPE html>
           count3++;
         } else if (key === '4') {
           count4++;
-          count6++;
         } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
