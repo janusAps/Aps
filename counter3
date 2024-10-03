@@ -1,4 +1,4 @@
-e<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <style>
@@ -12,6 +12,12 @@ e<!DOCTYPE html>
         font-size: 9vh;
         font-weight: bold;
       }
+      .counter-white {
+        color: white;
+        margin-bottom: 5px;
+        font-size: 9vh;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -20,7 +26,8 @@ e<!DOCTYPE html>
     <div class="counter" id="counter3">0 Chris</div>
     <div class="counter" id="counter4">0 Bobby</div>
     <div class="counter" id="counter5">0 Steve</div>
-
+    <div class="counter-white" id="counter6">0 Emily</div>
+    <div class="counter-white" id="counter7">0 Chris</div>
 
     <script>
       // Get references to the counter elements
@@ -29,11 +36,8 @@ e<!DOCTYPE html>
       const counter3 = document.getElementById('counter3');
       const counter4 = document.getElementById('counter4');
       const counter5 = document.getElementById('counter5');
-
-
-
-
-
+      const counter6 = document.getElementById('counter6');
+      const counter7 = document.getElementById('counter7');
 
       // Initialize counters
       let count1 = 0;
@@ -41,22 +45,34 @@ e<!DOCTYPE html>
       let count3 = 0;
       let count4 = 0;
       let count5 = 0;
+      let count6 = 0;
+      let count7 = 0;
 
-  
       // Update counter values and font sizes on the screen
       function updateCounters() {
         const maxHeight = window.innerHeight * 0.8; // Maximum height for the counters
         const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
+
         counter1.textContent = `${count1} Mia`;
         counter1.style.fontSize = `${baseFontSize * 1.2}px`;
+
         counter2.textContent = `${count2} Theo`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
+
         counter3.textContent = `${count3} Chris`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
+
         counter4.textContent = `${count4} Bobby`;
         counter4.style.fontSize = `${baseFontSize * 1.2}px`;
+
         counter5.textContent = `${count5} Steve`;
         counter5.style.fontSize = `${baseFontSize * 1.2}px`;
+
+        counter6.textContent = `${count6} Emily`;
+        counter6.style.fontSize = `${baseFontSize * 1.2}px`;
+
+        counter7.textContent = `${count7} Chris`;
+        counter7.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
       // Increment or decrement counters based on keypress
@@ -72,6 +88,10 @@ e<!DOCTYPE html>
           count4++;
         } else if (key === '5') {
           count5++;
+        } else if (key === '6') {
+          count6++;
+        } else if (key === '7') {
+          count7++;
         } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
@@ -79,14 +99,19 @@ e<!DOCTYPE html>
           count3 = 0;
           count4 = 0;
           count5 = 0;
+          count6 = 0;
+          count7 = 0;
         }
 
         updateCounters();
       }
+
       // Attach event listener to the document for keypress events
       document.addEventListener('keypress', handleKeyPress);
+
       // Call the updateCounters function initially to set the font sizes
       updateCounters();
     </script>
   </body>
 </html>
+
