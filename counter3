@@ -26,7 +26,7 @@
     <div class="counter" id="counter3">0 Bobby</div>
     <div class="counter" id="counter4">0 Steve</div>
     <div class="counter-white" id="counter5">0 Emily</div>
-    <div class="counter-white" id="counter6">0 Nic</div>
+    <div class="counter-white" id="counter6">0 Chris</div>
 
     <script>
       // Get references to the counter elements
@@ -65,7 +65,7 @@
         counter5.textContent = `${count5} Emily`;
         counter5.style.fontSize = `${baseFontSize * 1.2}px`;
 
-        counter6.textContent = `${count6} Nic`;
+        counter6.textContent = `${count6} Chris`;
         counter6.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
