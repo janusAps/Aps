@@ -24,8 +24,7 @@
     <div class="counter" id="counter1">0 Mia</div>
     <div class="counter" id="counter2">0 Theo</div>
     <div class="counter" id="counter3">0 Bobby</div>
-    <div class="counter" id="counter4">0 Steve</div>
-    <div class="counter-white" id="counter5">0 Chris</div>
+    <div class="counter-white" id="counter4">0 Chris</div>
 
     <script>
       // Get references to the counter elements
@@ -33,14 +32,12 @@
       const counter2 = document.getElementById('counter2');
       const counter3 = document.getElementById('counter3');
       const counter4 = document.getElementById('counter4');
-      const counter5 = document.getElementById('counter5');
 
       // Initialize counters
       let count1 = 0;
       let count2 = 0;
       let count3 = 0;
       let count4 = 0;
-      let count5 = 0;
 
       // Update counter values and font sizes on the screen
       function updateCounters() {
@@ -56,11 +53,9 @@
         counter3.textContent = `${count3} Bobby`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
 
-        counter4.textContent = `${count4} Steve`;
-        counter4.style.fontSize = `${baseFontSize * 1.2}px`;
 
-        counter5.textContent = `${count5} Chris`;
-        counter5.style.fontSize = `${baseFontSize * 1.2}px`;
+        counter4.textContent = `${count4} Chris`;
+        counter4.style.fontSize = `${baseFontSize * 1.2}px`;
       }
 
       // Increment or decrement counters based on keypress
@@ -74,15 +69,12 @@
           count3++;
         } else if (key === '4') {
           count4++;
-        } else if (key === '5') {
-          count5++;
         } else if (key === '0') {
           // Reset all counters to zero
           count1 = 0;
           count2 = 0;
           count3 = 0;
           count4 = 0;
-          count5 = 0;
 
         }
 
