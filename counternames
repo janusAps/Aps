@@ -23,7 +23,7 @@
         color: #ffd900;
         font-size: 8vh; /* Larger font size for names */
         font-weight: bold;
-        line-height: 1.5; /* Controls spacing between rows */
+        line-height: 1.2; /* Reduced gap between rows (half the height of the font) */
       }
       .right {
         flex: 1;
