@@ -58,16 +58,16 @@
     <script>
       // Get references to counters and countdown
       const counters = [
-        document.getElementById('counter1'),
-        document.getElementById('counter2'),
-        document.getElementById('counter3'),
-        document.getElementById('counter4'),
-        document.getElementById('counter5'),
-        document.getElementById('counter6'),
-        document.getElementById('counter7'),
-        document.getElementById('counter8'),
-        document.getElementById('counter9'),
-        document.getElementById('counter10'),
+        { element: document.getElementById('counter1'), name: 'Mia' },
+        { element: document.getElementById('counter2'), name: 'Bobby' },
+        { element: document.getElementById('counter3'), name: 'Ike' },
+        { element: document.getElementById('counter4'), name: 'Sam' },
+        { element: document.getElementById('counter5'), name: 'Lily' },
+        { element: document.getElementById('counter6'), name: 'Alex' },
+        { element: document.getElementById('counter7'), name: 'Jane' },
+        { element: document.getElementById('counter8'), name: 'Max' },
+        { element: document.getElementById('counter9'), name: 'Zoe' },
+        { element: document.getElementById('counter10'), name: 'Leo' },
       ];
       const countdownElement = document.getElementById('countdown');
 
@@ -79,7 +79,7 @@
       // Update counters on the screen
       function updateCounters() {
         counters.forEach((counter, index) => {
-          counter.textContent = `${scores[index]} ${counter.id.replace('counter', '')}`;
+          counter.element.textContent = `${scores[index]} ${counter.name}`;
         });
       }
 
