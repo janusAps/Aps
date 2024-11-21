@@ -47,7 +47,7 @@
         counter2.textContent = `${count2} Bobby`;
         counter2.style.fontSize = `${baseFontSize * 1.2}px`;
 
-        counter3.textContent = `${count2} Ike`;
+        counter3.textContent = `${count3} Ike`;
         counter3.style.fontSize = `${baseFontSize * 1.2}px`;
 
       }
