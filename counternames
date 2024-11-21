@@ -13,7 +13,7 @@
         overflow: hidden; /* Prevent horizontal scrolling */
       }
       .left {
-        width: 22%; /* Left section now takes 22% of the screen */
+        width: 33.33%; /* Left section takes one-third of the screen */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -29,14 +29,15 @@
         line-height: 1.2; /* Reduced gap between rows */
       }
       .center, .right {
-        width: 39%; /* Center and right sections take 39% each */
+        width: 33.33%; /* Each of these sections takes one-third of the screen */
         display: flex;
         justify-content: center;
         align-items: center;
       }
       .countdown {
-        font-size: 33vh; /* Adjusted countdown font size */
+        font-size: 20vh; /* Adjusted countdown font size for better fit */
         font-weight: bold;
+        margin: 0; /* Remove extra margins */
       }
       .red {
         color: red;
@@ -49,7 +50,7 @@
   <body>
     <div class="left" id="nameList">
       <!-- 8 counters with real names -->
-      <div class="counter" id="counter1">0 ChriS</div>
+      <div class="counter" id="counter1">0 Chris</div>
       <div class="counter" id="counter2">0 James</div>
       <div class="counter" id="counter3">0 Michael</div>
       <div class="counter" id="counter4">0 Alex</div>
@@ -60,18 +61,17 @@
     </div>
 
     <div class="center">
-      <!-- Empty space between left and right sections -->
+      <div class="countdown red" id="redCountdown">20</div>
     </div>
 
     <div class="right">
-      <div class="countdown red" id="redCountdown">20</div>
       <div class="countdown white" id="whiteCountdown">20</div>
     </div>
 
     <script>
       // Get references to counters and countdowns
       const counters = [
-        { element: document.getElementById('counter1'), name: 'ChriS' },
+        { element: document.getElementById('counter1'), name: 'Chris' },
         { element: document.getElementById('counter2'), name: 'James' },
         { element: document.getElementById('counter3'), name: 'Michael' },
         { element: document.getElementById('counter4'), name: 'Alex' },
