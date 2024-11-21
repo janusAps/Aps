@@ -47,7 +47,7 @@
   <body>
     <div class="left" id="nameList">
       <!-- 8 counters with real names -->
-      <div class="counter" id="counter1">0 Chris</div>
+      <div class="counter" id="counter1">0 CHris</div>
       <div class="counter" id="counter2">0 James</div>
       <div class="counter" id="counter3">0 Michael</div>
       <div class="counter" id="counter4">0 Alex</div>
@@ -69,7 +69,7 @@
     <script>
       // Get references to counters and countdowns
       const counters = [
-        { element: document.getElementById('counter1'), name: 'Chris' },
+        { element: document.getElementById('counter1'), name: 'CHris' },
         { element: document.getElementById('counter2'), name: 'James' },
         { element: document.getElementById('counter3'), name: 'Michael' },
         { element: document.getElementById('counter4'), name: 'Alex' },
