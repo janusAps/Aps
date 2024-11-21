@@ -13,7 +13,7 @@
         overflow: hidden; /* Prevent horizontal scrolling */
       }
       .left {
-        width: 20%; /* Left section takes 20% of the screen */
+        width: 22%; /* Left section now takes 22% of the screen */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -24,12 +24,12 @@
       }
       .counter {
         color: #ffd900;
-        font-size: 7vh; /* Slightly smaller font size for names */
+        font-size: 7vh; /* Adjusted font size for better fit */
         font-weight: bold;
         line-height: 1.2; /* Reduced gap between rows */
       }
       .center, .right {
-        width: 40%; /* Center and right sections take 40% each */
+        width: 39%; /* Center and right sections take 39% each */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -60,7 +60,7 @@
     </div>
 
     <div class="center">
-      <!-- Empty space between left and right sections (optional) -->
+      <!-- Empty space between left and right sections -->
     </div>
 
     <div class="right">
@@ -75,4 +75,83 @@
         { element: document.getElementById('counter2'), name: 'James' },
         { element: document.getElementById('counter3'), name: 'Michael' },
         { element: document.getElementById('counter4'), name: 'Alex' },
-        { element: document.getElementById('counter5'), name: 
+        { element: document.getElementById('counter5'), name: 'Jason' },
+        { element: document.getElementById('counter6'), name: 'Amber' },
+        { element: document.getElementById('counter7'), name: 'Sam' },
+        { element: document.getElementById('counter8'), name: 'Rayan' },
+      ];
+      const redCountdownElement = document.getElementById('redCountdown');
+      const whiteCountdownElement = document.getElementById('whiteCountdown');
+
+      // Initialize variables
+      let scores = Array(8).fill(0);
+      let redCountdown = 20;
+      let whiteCountdown = 20;
+
+      // Update counters on the screen
+      function updateCounters() {
+        counters.forEach((counter, index) => {
+          counter.element.textContent = `${scores[index]} ${counter.name}`;
+        });
+      }
+
+      // Decrease red countdown manually with each left click
+      function decreaseRedCountdown() {
+        if (redCountdown > 0) {
+          redCountdown--;
+          redCountdownElement.textContent = redCountdown;
+        }
+      }
+
+      // Decrease white countdown manually with each right click
+      function decreaseWhiteCountdown() {
+        if (whiteCountdown > 0) {
+          whiteCountdown--;
+          whiteCountdownElement.textContent = whiteCountdown;
+        }
+      }
+
+      // Reset all scores and countdowns
+      function resetAll() {
+        scores.fill(0);
+        redCountdown = 20;
+        whiteCountdown = 20;
+        redCountdownElement.textContent = redCountdown;
+        whiteCountdownElement.textContent = whiteCountdown;
+        updateCounters();
+      }
+
+      // Handle keypress to update scores
+      document.addEventListener('keypress', (event) => {
+        const key = event.key;
+        if (key >= '1' && key <= '8') {
+          scores[parseInt(key) - 1]++;
+        } else if (key === '0') {
+          scores[7]++;
+        } else if (key.toLowerCase() === 'r') {
+          resetAll();
+        }
+        updateCounters();
+      });
+
+      // Handle mouse clicks to decrease countdowns
+      document.addEventListener('mousedown', (event) => {
+        if (event.button === 0) {
+          // Left mouse button (Red countdown)
+          decreaseRedCountdown();
+        } else if (event.button === 2) {
+          // Right mouse button (White countdown)
+          decreaseWhiteCountdown();
+        }
+      });
+
+      // Disable the context menu to prevent the right-click menu from appearing
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+
+      // Initialize
+      updateCounters();
+    </script>
+  </body>
+</html>
