@@ -12,7 +12,7 @@
         color: white;
       }
       .left {
-        width: 33.33%; /* One-third of the screen */
+        width: 25%; /* Left section takes 25% of the screen */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -27,7 +27,7 @@
         line-height: 1.2; /* Reduced gap between rows */
       }
       .center, .right {
-        width: 33.33%; /* Each of these sections takes up one-third of the screen */
+        width: 37.5%; /* Center and right sections take 37.5% each */
         display: flex;
         justify-content: center;
         align-items: center;
