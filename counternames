@@ -46,17 +46,15 @@
   </head>
   <body>
     <div class="left" id="nameList">
-      <!-- 10 counters -->
-      <div class="counter" id="counter1">0 Mia</div>
-      <div class="counter" id="counter2">0 Bobby</div>
-      <div class="counter" id="counter3">0 Ike</div>
-      <div class="counter" id="counter4">0 Sam</div>
-      <div class="counter" id="counter5">0 Lily</div>
-      <div class="counter" id="counter6">0 Alex</div>
-      <div class="counter" id="counter7">0 Jane</div>
-      <div class="counter" id="counter8">0 Max</div>
-      <div class="counter" id="counter9">0 Zoe</div>
-      <div class="counter" id="counter10">0 Leo</div>
+      <!-- 8 counters with real names -->
+      <div class="counter" id="counter1">0 Chris</div>
+      <div class="counter" id="counter2">0 James</div>
+      <div class="counter" id="counter3">0 Michael</div>
+      <div class="counter" id="counter4">0 Alex</div>
+      <div class="counter" id="counter5">0 Jason</div>
+      <div class="counter" id="counter6">0 Amber</div>
+      <div class="counter" id="counter7">0 Sam</div>
+      <div class="counter" id="counter8">0 Rayan</div>
     </div>
 
     <div class="center">
@@ -71,12 +69,87 @@
     <script>
       // Get references to counters and countdowns
       const counters = [
-        { element: document.getElementById('counter1'), name: 'Mia' },
-        { element: document.getElementById('counter2'), name: 'Bobby' },
-        { element: document.getElementById('counter3'), name: 'Ike' },
-        { element: document.getElementById('counter4'), name: 'Sam' },
-        { element: document.getElementById('counter5'), name: 'Lily' },
-        { element: document.getElementById('counter6'), name: 'Alex' },
-        { element: document.getElementById('counter7'), name: 'Jane' },
-        { element: document.getElementById('counter8'), name: 'Max' },
-        { element: document.getElementById('co
+        { element: document.getElementById('counter1'), name: 'Chris' },
+        { element: document.getElementById('counter2'), name: 'James' },
+        { element: document.getElementById('counter3'), name: 'Michael' },
+        { element: document.getElementById('counter4'), name: 'Alex' },
+        { element: document.getElementById('counter5'), name: 'Jason' },
+        { element: document.getElementById('counter6'), name: 'Amber' },
+        { element: document.getElementById('counter7'), name: 'Sam' },
+        { element: document.getElementById('counter8'), name: 'Rayan' },
+      ];
+      const redCountdownElement = document.getElementById('redCountdown');
+      const whiteCountdownElement = document.getElementById('whiteCountdown');
+
+      // Initialize variables
+      let scores = Array(8).fill(0);
+      let redCountdown = 20;
+      let whiteCountdown = 20;
+
+      // Update counters on the screen
+      function updateCounters() {
+        counters.forEach((counter, index) => {
+          counter.element.textContent = `${scores[index]} ${counter.name}`;
+        });
+      }
+
+      // Decrease red countdown manually with each left click
+      function decreaseRedCountdown() {
+        if (redCountdown > 0) {
+          redCountdown--;
+          redCountdownElement.textContent = redCountdown;
+        }
+      }
+
+      // Decrease white countdown manually with each right click
+      function decreaseWhiteCountdown() {
+        if (whiteCountdown > 0) {
+          whiteCountdown--;
+          whiteCountdownElement.textContent = whiteCountdown;
+        }
+      }
+
+      // Reset all scores and countdowns
+      function resetAll() {
+        scores.fill(0);
+        redCountdown = 20;
+        whiteCountdown = 20;
+        redCountdownElement.textContent = redCountdown;
+        whiteCountdownElement.textContent = whiteCountdown;
+        updateCounters();
+      }
+
+      // Handle keypress to update scores
+      document.addEventListener('keypress', (event) => {
+        const key = event.key;
+        if (key >= '1' && key <= '8') {
+          scores[parseInt(key) - 1]++;
+        } else if (key === '0') {
+          scores[7]++;
+        } else if (key.toLowerCase() === 'r') {
+          resetAll();
+        }
+        updateCounters();
+      });
+
+      // Handle mouse clicks to decrease countdowns
+      document.addEventListener('mousedown', (event) => {
+        if (event.button === 0) {
+          // Left mouse button (Red countdown)
+          decreaseRedCountdown();
+        } else if (event.button === 2) {
+          // Right mouse button (White countdown)
+          decreaseWhiteCountdown();
+        }
+      });
+
+      // Disable the context menu to prevent the right-click menu from appearing
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+
+      // Initialize
+      updateCounters();
+    </script>
+  </body>
+</html>
