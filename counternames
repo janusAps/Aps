@@ -12,26 +12,27 @@
         color: white;
       }
       .left {
-        flex: 1;
+        flex: 0.3; /* Reducing width of the left side */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         padding-left: 20px;
+        gap: 1vh; /* Reduced gap between rows */
       }
       .counter {
         color: #ffd900;
         font-size: 8vh; /* Larger font size for names */
         font-weight: bold;
-        line-height: 1.2; /* Reduced gap between rows (half the height of the font) */
+        line-height: 1.2; /* Reduced gap between rows */
       }
       .right {
-        flex: 1;
+        flex: 0.7; /* Increased width of the right side */
         display: flex;
         justify-content: flex-end;
         align-items: center;
         padding: 15vh; /* Equal padding for top, bottom, and right sides */
-        gap: 10vw; /* Spacing between the two countdowns */
+        gap: 5vw; /* Reduced gap between the two countdowns */
       }
       .countdown {
         font-size: 46vh; /* 33% smaller font size */
