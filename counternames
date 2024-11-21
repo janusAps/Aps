@@ -34,7 +34,7 @@
         gap: 10vw; /* Spacing between the two countdowns */
       }
       .countdown {
-        font-size: 70vh; /* 70% of the screen height */
+        font-size: 46vh; /* 33% smaller font size */
         font-weight: bold;
       }
       .red {
