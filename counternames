@@ -31,10 +31,17 @@
         justify-content: flex-end;
         align-items: center;
         padding: 15vh; /* Equal padding for top, bottom, and right sides */
+        gap: 10vw; /* Spacing between the two countdowns */
       }
       .countdown {
         font-size: 70vh; /* 70% of the screen height */
         font-weight: bold;
+      }
+      .red {
+        color: red;
+      }
+      .white {
+        color: white;
       }
     </style>
   </head>
@@ -53,11 +60,12 @@
       <div class="counter" id="counter10">0 Leo</div>
     </div>
     <div class="right">
-      <div class="countdown" id="countdown">20</div>
+      <div class="countdown red" id="redCountdown">20</div>
+      <div class="countdown white" id="whiteCountdown">20</div>
     </div>
 
     <script>
-      // Get references to counters and countdown
+      // Get references to counters and countdowns
       const counters = [
         { element: document.getElementById('counter1'), name: 'Mia' },
         { element: document.getElementById('counter2'), name: 'Bobby' },
@@ -70,11 +78,13 @@
         { element: document.getElementById('counter9'), name: 'Zoe' },
         { element: document.getElementById('counter10'), name: 'Leo' },
       ];
-      const countdownElement = document.getElementById('countdown');
+      const redCountdownElement = document.getElementById('redCountdown');
+      const whiteCountdownElement = document.getElementById('whiteCountdown');
 
       // Initialize variables
       let scores = Array(10).fill(0);
-      let countdown = 20;
+      let redCountdown = 20;
+      let whiteCountdown = 20;
 
       // Update counters on the screen
       function updateCounters() {
@@ -83,19 +93,29 @@
         });
       }
 
-      // Decrease countdown manually with each click
-      function decreaseCountdown() {
-        if (countdown > 0) {
-          countdown--;
-          countdownElement.textContent = countdown;
+      // Decrease red countdown manually with each left click
+      function decreaseRedCountdown() {
+        if (redCountdown > 0) {
+          redCountdown--;
+          redCountdownElement.textContent = redCountdown;
         }
       }
 
-      // Reset all scores and countdown
+      // Decrease white countdown manually with each right click
+      function decreaseWhiteCountdown() {
+        if (whiteCountdown > 0) {
+          whiteCountdown--;
+          whiteCountdownElement.textContent = whiteCountdown;
+        }
+      }
+
+      // Reset all scores and countdowns
       function resetAll() {
         scores.fill(0);
-        countdown = 20;
-        countdownElement.textContent = countdown;
+        redCountdown = 20;
+        whiteCountdown = 20;
+        redCountdownElement.textContent = redCountdown;
+        whiteCountdownElement.textContent = whiteCountdown;
         updateCounters();
       }
 
@@ -112,12 +132,20 @@
         updateCounters();
       });
 
-      // Handle mouse click to decrease countdown
+      // Handle mouse clicks to decrease countdowns
       document.addEventListener('click', (event) => {
         if (event.button === 0) {
-          // Left mouse button
-          decreaseCountdown();
+          // Left mouse button (Red countdown)
+          decreaseRedCountdown();
+        } else if (event.button === 2) {
+          // Right mouse button (White countdown)
+          decreaseWhiteCountdown();
         }
+      });
+
+      // Disable the context menu to prevent the right-click menu from appearing
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
       });
 
       // Initialize
