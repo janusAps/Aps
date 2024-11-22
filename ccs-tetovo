@@ -3,79 +3,83 @@
   <head>
     <style>
       body {
-        display: flex;
-        flex-direction: column;
         margin: 0;
         padding: 0;
         height: 100vh;
         background-color: black;
         font-family: 'Arial Black', sans-serif;
         color: white;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
-      /* Container for the main part (counters) */
-      .main-container {
+      /* Main container for counters */
+      .counter-container {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        height: 80%; /* Adjust height to make room for the logo at the bottom */
-      }
-
-      .left, .center, .right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 33.33%; /* Each takes up one-third of the screen */
+        max-width: 1200px; /* Prevent from stretching too wide */
+        margin-bottom: 20px;
       }
 
       /* Left section (names) */
       .left {
-        padding-left: 20px;
-        align-items: flex-start;
+        width: 33.33%;
+        text-align: left;
+        padding-left: 10px;
       }
 
-      /* Styling for counters */
       .counter {
         color: #ffd900;
         font-size: 5vh;
         font-weight: bold;
-        line-height: 1.2;
-        margin-bottom: 1vh;
+        margin-bottom: 10px;
       }
 
-      /* Middle counter styling */
+      /* Center section (middle counter) */
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 33.33%;
+      }
+
       .middle-counter {
         font-size: 20vh;
         color: white;
         font-weight: bold;
       }
 
-      /* Right counter styling */
+      /* Right section (right counter) */
+      .right {
+        width: 33.33%;
+        text-align: center;
+      }
+
       .right-counter {
         font-size: 7vh;
         color: red;
         font-weight: bold;
       }
 
-      /* Logo container styling */
+      /* Logo styling */
       .logo-container {
         display: flex;
         justify-content: center;
-        margin-top: 20px; /* Adds space above the logo */
-        width: 100%;
+        margin-top: 20px; /* Adds some space between counters and the logo */
       }
 
       .logo {
-        width: 50%; /* Logo is 50% of screen width */
+        width: 50%;
         max-width: 800px;
       }
     </style>
   </head>
   <body>
-    <!-- Main Container for counters -->
-    <div class="main-container">
+    <!-- Main container for counters -->
+    <div class="counter-container">
       <!-- Left section (Names) -->
       <div class="left" id="nameList">
         <div class="counter" id="counter1">0 Chris</div>
