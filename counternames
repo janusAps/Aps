@@ -39,7 +39,7 @@
         margin: 0;
       }
       .middle-counter {
-        font-size: 60vh; /* 300% of the previous size (20vh x 3) */
+        font-size: 60vh;
         color: white;
       }
       .right-counter {
@@ -65,7 +65,7 @@
     </div>
 
     <div class="right">
-      <div class="countdown right-counter" id="rightCountdown">20</div>
+      <div class="countdown right-counter" id="rightCountdown">0</div>
     </div>
 
     <script>
@@ -86,7 +86,7 @@
       // Initialize values
       let scores = Array(8).fill(0);
       let middleCountdown = 20;
-      let rightCountdown = 20;
+      let rightCountdown = 0;
 
       // Update name counters
       function updateNameCounters() {
@@ -103,55 +103,41 @@
         }
       }
 
-      // Decrease right counter
-      function decreaseRightCounter() {
-        if (rightCountdown > 0) {
-          rightCountdown--;
-          rightCountdownElement.textContent = rightCountdown;
-        }
+      // Increase right counter
+      function increaseRightCounter() {
+        rightCountdown++;
+        rightCountdownElement.textContent = rightCountdown;
       }
 
       // Reset all values
       function resetAll() {
         scores.fill(0);
         middleCountdown = 20;
-        rightCountdown = 20;
+        rightCountdown = 0;
         middleCountdownElement.textContent = middleCountdown;
         rightCountdownElement.textContent = rightCountdown;
         updateNameCounters();
       }
 
-      // Handle keypress for name counters and middle counter
+      // Handle keypress for actions
       document.addEventListener('keypress', (event) => {
-        const key = event.key;
+        const key = event.key.toLowerCase();
         if (key >= '1' && key <= '8') {
           const index = parseInt(key) - 1;
           scores[index]++;
           updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter with keypress
+          decreaseMiddleCounter(); // Decrease middle counter when name key is pressed
         } else if (key === '0') {
           scores[7]++;
           updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter with keypress
-        } else if (key.toLowerCase() === 'r') {
-          resetAll();
+          decreaseMiddleCounter(); // Decrease middle counter when "0" is pressed
+        } else if (key === 'd') {
+          decreaseMiddleCounter(); // Decrease middle counter with "D"
+        } else if (key === 'enter') {
+          increaseRightCounter(); // Increase right counter with "Enter"
+        } else if (key === 'r') {
+          resetAll(); // Reset all counters
         }
-      });
-
-      // Handle mouse clicks
-      document.addEventListener('mousedown', (event) => {
-        if (event.button === 0) {
-          // Left click decreases middle counter
-          decreaseMiddleCounter();
-        } else if (event.button === 2) {
-          // Right click decreases right counter
-          decreaseRightCounter();
-        }
-      });
-
-      // Disable the context menu to prevent the right-click menu from appearing
-      document.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
       });
 
       // Initialize counters
