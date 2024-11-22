@@ -43,13 +43,14 @@
       .middle-counter {
         font-size: 60vh;
         color: white;
+        margin-top: -15vh; /* Move it up by 25% of its original size */
       }
       .right-counter {
         font-size: 20vh;
         color: red;
       }
       .logo {
-        width: 50%;
+        width: 75%; /* 50% bigger than 50% */
         margin-bottom: 20px;
       }
     </style>
