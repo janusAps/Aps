@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: black;
+        font-family: 'Arial Black', sans-serif;
+        color: white;
+        overflow: hidden;
+      }
+
+      /* Container for the main part (counters) */
+      .main-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 80%; /* Adjust height to make room for the logo at the bottom */
+      }
+
+      .left, .center, .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 33.33%; /* Each takes up one-third of the screen */
+      }
+
+      /* Left section (names) */
+      .left {
+        padding-left: 20px;
+        align-items: flex-start;
+      }
+
+      /* Styling for counters */
+      .counter {
+        color: #ffd900;
+        font-size: 5vh;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1vh;
+      }
+
+      /* Middle counter styling */
+      .middle-counter {
+        font-size: 20vh;
+        color: white;
+        font-weight: bold;
+      }
+
+      /* Right counter styling */
+      .right-counter {
+        font-size: 7vh;
+        color: red;
+        font-weight: bold;
+      }
+
+      /* Logo container styling */
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; /* Adds space above the logo */
+        width: 100%;
+      }
+
+      .logo {
+        width: 50%; /* Logo is 50% of screen width */
+        max-width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Container for counters -->
+    <div class="main-container">
+      <!-- Left section (Names) -->
+      <div class="left" id="nameList">
+        <div class="counter" id="counter1">0 Chris</div>
+        <div class="counter" id="counter2">0 James</div>
+        <div class="counter" id="counter3">0 Michael</div>
+        <div class="counter" id="counter4">0 Alex</div>
+        <div class="counter" id="counter5">0 Jason</div>
+        <div class="counter" id="counter6">0 Amber</div>
+        <div class="counter" id="counter7">0 Sam</div>
+        <div class="counter" id="counter8">0 Rayan</div>
+      </div>
+
+      <!-- Center section (Middle Counter) -->
+      <div class="center">
+        <div class="middle-counter" id="middleCountdown">20</div>
+      </div>
+
+      <!-- Right section (Right Counter) -->
+      <div class="right">
+        <div class="right-counter" id="rightCountdown">0</div>
+      </div>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+      <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
+    </div>
+
+    <script>
+      // References to counters and countdowns
+      const counters = [
+        { element: document.getElementById('counter1'), name: 'Chris' },
+        { element: document.getElementById('counter2'), name: 'James' },
+        { element: document.getElementById('counter3'), name: 'Michael' },
+        { element: document.getElementById('counter4'), name: 'Alex' },
+        { element: document.getElementById('counter5'), name: 'Jason' },
+        { element: document.getElementById('counter6'), name: 'Amber' },
+        { element: document.getElementById('counter7'), name: 'Sam' },
+        { element: document.getElementById('counter8'), name: 'Rayan' },
+      ];
+      const middleCountdownElement = document.getElementById('middleCountdown');
+      const rightCountdownElement = document.getElementById('rightCountdown');
+
+      // Initialize values
+      let scores = Array(8).fill(0);
+      let middleCountdown = 20;
+      let rightCountdown = 0;
+
+      // Update name counters
+      function updateNameCounters() {
+        counters.forEach((counter, index) => {
+          counter.element.textContent = `${scores[index]} ${counter.name}`;
+        });
+      }
+
+      // Decrease middle counter
+      function decreaseMiddleCounter() {
+        if (middleCountdown > 0) {
+          middleCountdown--;
+          middleCountdownElement.textContent = middleCountdown;
+        }
+      }
+
+      // Increase right counter
+      function increaseRightCounter() {
+        rightCountdown++;
+        rightCountdownElement.textContent = rightCountdown;
+      }
+
+      // Reset all values
+      function resetAll() {
+        scores.fill(0);
+        middleCountdown = 20;
+        rightCountdown = 0;
+        middleCountdownElement.textContent = middleCountdown;
+        rightCountdownElement.textContent = rightCountdown;
+        updateNameCounters();
+      }
+
+      // Handle keypress for actions
+      document.addEventListener('keypress', (event) => {
+        const key = event.key.toLowerCase();
+        if (key >= '1' && key <= '8') {
+          const index = parseInt(key) - 1;
+          scores[index]++;
+          updateNameCounters();
+          decreaseMiddleCounter(); // Decrease middle counter when name key is pressed
+        } else if (key === '0') {
+          scores[7]++;
+          updateNameCounters();
+          decreaseMiddleCounter(); // Decrease middle counter when "0" is pressed
+        } else if (key === 'd') {
+          decreaseMiddleCounter(); // Decrease middle counter with "D"
+        } else if (key === 'enter') {
+          increaseRightCounter(); // Increase right counter with "Enter"
+        } else if (key === 'r') {
+          resetAll(); // Reset all counters
+        }
+      });
+
+      // Initialize counters
+      updateNameCounters();
+    </script>
+  </body>
+</html>
