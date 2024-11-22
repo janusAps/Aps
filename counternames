@@ -8,238 +8,87 @@
         padding: 0;
         height: 100vh;
         background-color: black;
-        font-famil<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background-color: black;
         font-family: 'Arial Black', sans-serif;
         color: white;
         overflow: hidden;
-      }
-      .left {
-        width: 33.33%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding-left: 20px;
-        gap: 1vh;
-        overflow-y: auto;
-      }
-      .counter {
-        color: #ffd900;
-        font-size: 7vh;
-        font-weight: bold;
-        line-height: 1.2;
-      }
-      .center, .right {
-        width: 33.33%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        top: -15%;
-      }
-      .countdown {
-        font-weight: bold;
-        margin: 0;
-      }
-      .middle-counter {
-        font-size: 60vh;
-        color: white;
-      }
-      .right-counter {
-        font-size: 20vh;
-        color: red;
+        flex-direction: column; /* Stack elements vertically */
       }
       .logo-container {
-        position: absolute;
-        top: 5%;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 5%; /* Adds space below the logo */
       }
       .logo {
-        width: 100%; /* Logo now takes double the width */
-        max-width: 600px;
+        width: 100%; /* Logo will take 100% of the screen width */
+        max-width: 1000px; /* Limit the max size to prevent being too large */
       }
-    </style>
-  </head>
-  <body>
-    <!-- Logo at the top -->
-    <div class="logo-container">
-      <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
-    </div>
-
-    <div class="left" id="nameList">
-      <div class="counter" id="counter1">0 Chris</div>
-      <div class="counter" id="counter2">0 James</div>
-      <div class="counter" id="counter3">0 Michael</div>
-      <div class="counter" id="counter4">0 Alex</div>
-      <div class="counter" id="counter5">0 Jason</div>
-      <div class="counter" id="counter6">0 Amber</div>
-      <div class="counter" id="counter7">0 Sam</div>
-      <div class="counter" id="counter8">0 Rayan</div>
-    </div>
-
-    <div class="center">
-      <div class="countdown middle-counter" id="middleCountdown">20</div>
-    </div>
-
-    <div class="right">
-      <div class="countdown right-counter" id="rightCountdown">0</div>
-    </div>
-
-    <script>
-      // References to counters and countdowns
-      const counters = [
-        { element: document.getElementById('counter1'), name: 'Chris' },
-        { element: document.getElementById('counter2'), name: 'James' },
-        { element: document.getElementById('counter3'), name: 'Michael' },
-        { element: document.getElementById('counter4'), name: 'Alex' },
-        { element: document.getElementById('counter5'), name: 'Jason' },
-        { element: document.getElementById('counter6'), name: 'Amber' },
-        { element: document.getElementById('counter7'), name: 'Sam' },
-        { element: document.getElementById('counter8'), name: 'Rayan' },
-      ];
-      const middleCountdownElement = document.getElementById('middleCountdown');
-      const rightCountdownElement = document.getElementById('rightCountdown');
-
-      // Initialize values
-      let scores = Array(8).fill(0);
-      let middleCountdown = 20;
-      let rightCountdown = 0;
-
-      // Update name counters
-      function updateNameCounters() {
-        counters.forEach((counter, index) => {
-          counter.element.textContent = `${scores[index]} ${counter.name}`;
-        });
-      }
-
-      // Decrease middle counter
-      function decreaseMiddleCounter() {
-        if (middleCountdown > 0) {
-          middleCountdown--;
-          middleCountdownElement.textContent = middleCountdown;
-        }
-      }
-
-      // Increase right counter
-      function increaseRightCounter() {
-        rightCountdown++;
-        rightCountdownElement.textContent = rightCountdown;
-      }
-
-      // Reset all values
-      function resetAll() {
-        scores.fill(0);
-        middleCountdown = 20;
-        rightCountdown = 0;
-        middleCountdownElement.textContent = middleCountdown;
-        rightCountdownElement.textContent = rightCountdown;
-        updateNameCounters();
-      }
-
-      // Handle keypress for actions
-      document.addEventListener('keypress', (event) => {
-        const key = event.key.toLowerCase();
-        if (key >= '1' && key <= '8') {
-          const index = parseInt(key) - 1;
-          scores[index]++;
-          updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter when name key is pressed
-        } else if (key === '0') {
-          scores[7]++;
-          updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter when "0" is pressed
-        } else if (key === 'd') {
-          decreaseMiddleCounter(); // Decrease middle counter with "D"
-        } else if (key === 'enter') {
-          increaseRightCounter(); // Increase right counter with "Enter"
-        } else if (key === 'r') {
-          resetAll(); // Reset all counters
-        }
-      });
-
-      // Initialize counters
-      updateNameCounters();
-    </script>
-  </body>
-</html>
-y: 'Arial Black', sans-serif;
-        color: white;
-        overflow: hidden;
-      }
-      .left {
-        width: 33.33%;
+      .main-container {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding-left: 20px;
-        gap: 1vh;
-        overflow-y: auto;
+        justify-content: space-between;
+        width: 100%;
+        height: 90%; /* Adjust height to fit remaining space after logo */
       }
-      .counter {
-        color: #ffd900;
-        font-size: 7vh;
-        font-weight: bold;
-        line-height: 1.2;
-      }
-      .center, .right {
-        width: 33.33%;
+      .left, .center, .right {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 33.33%; /* Each takes up one-third of the screen */
       }
-      .countdown {
+      .left {
+        padding-left: 20px;
+        align-items: flex-start; /* Align names to the left */
+      }
+      .counter {
+        color: #ffd900;
+        font-size: 5vh;
         font-weight: bold;
-        margin: 0;
+        line-height: 1.2;
+        margin-bottom: 1vh;
       }
       .middle-counter {
-        font-size: 60vh;
+        font-size: 20vh;
         color: white;
+        font-weight: bold;
       }
       .right-counter {
-        font-size: 20vh;
+        font-size: 7vh;
         color: red;
-      }
-      .logo {
-        width: 50%;
-        margin-bottom: 20px;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
-    <div class="left" id="nameList">
-      <div class="counter" id="counter1">0 Chris</div>
-      <div class="counter" id="counter2">0 James</div>
-      <div class="counter" id="counter3">0 Michael</div>
-      <div class="counter" id="counter4">0 Alex</div>
-      <div class="counter" id="counter5">0 Jason</div>
-      <div class="counter" id="counter6">0 Amber</div>
-      <div class="counter" id="counter7">0 Sam</div>
-      <div class="counter" id="counter8">0 Rayan</div>
-    </div>
-
-    <div class="center">
-      <!-- Add the logo above the middle counter -->
+    <!-- Logo Container -->
+    <div class="logo-container">
       <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
-      <div class="countdown middle-counter" id="middleCountdown">20</div>
     </div>
 
-    <div class="right">
-      <div class="countdown right-counter" id="rightCountdown">0</div>
+    <!-- Main Container for the counters -->
+    <div class="main-container">
+      <!-- Left Section (Names) -->
+      <div class="left" id="nameList">
+        <div class="counter" id="counter1">0 Chris</div>
+        <div class="counter" id="counter2">0 James</div>
+        <div class="counter" id="counter3">0 Michael</div>
+        <div class="counter" id="counter4">0 Alex</div>
+        <div class="counter" id="counter5">0 Jason</div>
+        <div class="counter" id="counter6">0 Amber</div>
+        <div class="counter" id="counter7">0 Sam</div>
+        <div class="counter" id="counter8">0 Rayan</div>
+      </div>
+
+      <!-- Center Section (Middle Counter) -->
+      <div class="center">
+        <div class="middle-counter" id="middleCountdown">20</div>
+      </div>
+
+      <!-- Right Section (Right Counter) -->
+      <div class="right">
+        <div class="right-counter" id="rightCountdown">0</div>
+      </div>
     </div>
 
     <script>
