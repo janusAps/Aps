@@ -10,46 +10,46 @@
         background-color: #1e4e70;
         font-family: 'Arial Black', sans-serif;
         color: white;
-        overflow: hidden; /* Prevent horizontal scrolling */
+        overflow: hidden;
       }
       .left {
-        width: 33.33%; /* Left section takes one-third of the screen */
+        width: 33.33%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         padding-left: 20px;
-        gap: 1vh; /* Reduced gap between rows */
-        overflow-y: auto; /* Allow vertical scrolling for long names */
+        gap: 1vh;
+        overflow-y: auto;
       }
       .counter {
         color: #ffd900;
-        font-size: 7vh; /* Adjusted font size for better fit */
+        font-size: 7vh;
         font-weight: bold;
-        line-height: 1.2; /* Reduced gap between rows */
+        line-height: 1.2;
       }
       .center, .right {
-        width: 33.33%; /* Each of these sections takes one-third of the screen */
+        width: 33.33%;
         display: flex;
         justify-content: center;
         align-items: center;
       }
       .countdown {
-        font-size: 20vh; /* Adjusted countdown font size for better fit */
         font-weight: bold;
-        margin: 0; /* Remove extra margins */
+        margin: 0;
       }
-      .red {
-        color: red;
-      }
-      .white {
+      .middle-counter {
+        font-size: 60vh; /* 300% of the previous size (20vh x 3) */
         color: white;
+      }
+      .right-counter {
+        font-size: 20vh;
+        color: red;
       }
     </style>
   </head>
   <body>
     <div class="left" id="nameList">
-      <!-- 8 counters with real names -->
       <div class="counter" id="counter1">0 Chris</div>
       <div class="counter" id="counter2">0 James</div>
       <div class="counter" id="counter3">0 Michael</div>
@@ -61,15 +61,15 @@
     </div>
 
     <div class="center">
-      <div class="countdown red" id="redCountdown">20</div>
+      <div class="countdown middle-counter" id="middleCountdown">20</div>
     </div>
 
     <div class="right">
-      <div class="countdown white" id="whiteCountdown">20</div>
+      <div class="countdown right-counter" id="rightCountdown">20</div>
     </div>
 
     <script>
-      // Get references to counters and countdowns
+      // References to counters and countdowns
       const counters = [
         { element: document.getElementById('counter1'), name: 'Chris' },
         { element: document.getElementById('counter2'), name: 'James' },
@@ -80,68 +80,72 @@
         { element: document.getElementById('counter7'), name: 'Sam' },
         { element: document.getElementById('counter8'), name: 'Rayan' },
       ];
-      const redCountdownElement = document.getElementById('redCountdown');
-      const whiteCountdownElement = document.getElementById('whiteCountdown');
+      const middleCountdownElement = document.getElementById('middleCountdown');
+      const rightCountdownElement = document.getElementById('rightCountdown');
 
-      // Initialize variables
+      // Initialize values
       let scores = Array(8).fill(0);
-      let redCountdown = 20;
-      let whiteCountdown = 20;
+      let middleCountdown = 20;
+      let rightCountdown = 20;
 
-      // Update counters on the screen
-      function updateCounters() {
+      // Update name counters
+      function updateNameCounters() {
         counters.forEach((counter, index) => {
           counter.element.textContent = `${scores[index]} ${counter.name}`;
         });
       }
 
-      // Decrease red countdown manually with each left click
-      function decreaseRedCountdown() {
-        if (redCountdown > 0) {
-          redCountdown--;
-          redCountdownElement.textContent = redCountdown;
+      // Decrease middle counter
+      function decreaseMiddleCounter() {
+        if (middleCountdown > 0) {
+          middleCountdown--;
+          middleCountdownElement.textContent = middleCountdown;
         }
       }
 
-      // Decrease white countdown manually with each right click
-      function decreaseWhiteCountdown() {
-        if (whiteCountdown > 0) {
-          whiteCountdown--;
-          whiteCountdownElement.textContent = whiteCountdown;
+      // Decrease right counter
+      function decreaseRightCounter() {
+        if (rightCountdown > 0) {
+          rightCountdown--;
+          rightCountdownElement.textContent = rightCountdown;
         }
       }
 
-      // Reset all scores and countdowns
+      // Reset all values
       function resetAll() {
         scores.fill(0);
-        redCountdown = 20;
-        whiteCountdown = 20;
-        redCountdownElement.textContent = redCountdown;
-        whiteCountdownElement.textContent = whiteCountdown;
-        updateCounters();
+        middleCountdown = 20;
+        rightCountdown = 20;
+        middleCountdownElement.textContent = middleCountdown;
+        rightCountdownElement.textContent = rightCountdown;
+        updateNameCounters();
       }
 
-      // Handle keypress to update scores
+      // Handle keypress for name counters and middle counter
       document.addEventListener('keypress', (event) => {
         const key = event.key;
         if (key >= '1' && key <= '8') {
-          scores[parseInt(key) - 1]++;
+          const index = parseInt(key) - 1;
+          scores[index]++;
+          updateNameCounters();
+          decreaseMiddleCounter(); // Decrease middle counter with keypress
         } else if (key === '0') {
           scores[7]++;
+          updateNameCounters();
+          decreaseMiddleCounter(); // Decrease middle counter with keypress
         } else if (key.toLowerCase() === 'r') {
           resetAll();
         }
-        updateCounters();
       });
 
-      // Handle mouse clicks to decrease countdowns
+      // Handle mouse clicks
       document.addEventListener('mousedown', (event) => {
         if (event.button === 0) {
-          // Left mouse button (Red countdown)
-          decreaseRedCountdown();
+          // Left click decreases middle counter
+          decreaseMiddleCounter();
         } else if (event.button === 2) {
-          // Right mouse button (White countdown)
-          decreaseWhiteCountdown();
+          // Right click decreases right counter
+          decreaseRightCounter();
         }
       });
 
@@ -150,8 +154,8 @@
         event.preventDefault();
       });
 
-      // Initialize
-      updateCounters();
+      // Initialize counters
+      updateNameCounters();
     </script>
   </body>
 </html>
