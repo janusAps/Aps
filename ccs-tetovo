@@ -34,6 +34,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        height: 100vh;
       }
       .countdown {
         font-weight: bold;
