@@ -61,10 +61,8 @@
       <div class="counter" id="counter2">0 James</div>
       <div class="counter" id="counter3">0 Michael</div>
       <div class="counter" id="counter4">0 Alex</div>
-      <div class="counter" id="counter5">0 Jason</div>
-      <div class="counter" id="counter6">0 Amber</div>
-      <div class="counter" id="counter7">0 Sam</div>
-      <div class="counter" id="counter8">0 Rayan</div>
+      <div class="counter" id="counter5">0 Amber</div>
+      <div class="counter" id="counter6">0 Rayan</div>
     </div>
 
     <div class="center">
@@ -84,16 +82,14 @@
         { element: document.getElementById('counter2'), name: 'James' },
         { element: document.getElementById('counter3'), name: 'Michael' },
         { element: document.getElementById('counter4'), name: 'Alex' },
-        { element: document.getElementById('counter5'), name: 'Jason' },
-        { element: document.getElementById('counter6'), name: 'Amber' },
-        { element: document.getElementById('counter7'), name: 'Sam' },
-        { element: document.getElementById('counter8'), name: 'Rayan' },
+        { element: document.getElementById('counter5'), name: 'Amber' },
+        { element: document.getElementById('counter6'), name: 'Rayan' }
       ];
       const middleCountdownElement = document.getElementById('middleCountdown');
       const rightCountdownElement = document.getElementById('rightCountdown');
 
       // Initialize values
-      let scores = Array(8).fill(0);
+      let scores = Array(6).fill(0);
       let middleCountdown = 20;
       let rightCountdown = 0;
 
@@ -131,15 +127,11 @@
       // Handle keypress for actions
       document.addEventListener('keypress', (event) => {
         const key = event.key.toLowerCase();
-        if (key >= '1' && key <= '8') {
+        if (key >= '1' && key <= '6') {
           const index = parseInt(key) - 1;
           scores[index]++;
           updateNameCounters();
           decreaseMiddleCounter(); // Decrease middle counter when name key is pressed
-        } else if (key === '0') {
-          scores[7]++;
-          updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter when "0" is pressed
         } else if (key === 'd') {
           decreaseMiddleCounter(); // Decrease middle counter with "D"
         } else if (key === 'enter') {
