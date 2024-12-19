@@ -63,6 +63,9 @@
       <div class="counter" id="counter4">0 Alex</div>
       <div class="counter" id="counter5">0 Amber</div>
       <div class="counter" id="counter6">0 Rayan</div>
+      <div class="counter" id="counter7">0 Denis</div>
+      <div class="counter" id="counter8">0 Ashley</div>
+      <div class="counter" id="counter9">0 Nathan</div>
     </div>
 
     <div class="center">
@@ -83,13 +86,16 @@
         { element: document.getElementById('counter3'), name: 'Michael' },
         { element: document.getElementById('counter4'), name: 'Alex' },
         { element: document.getElementById('counter5'), name: 'Amber' },
-        { element: document.getElementById('counter6'), name: 'Rayan' }
+        { element: document.getElementById('counter6'), name: 'Rayan' },
+        { element: document.getElementById('counter7'), name: 'Denis' },
+        { element: document.getElementById('counter8'), name: 'Ashley' },
+        { element: document.getElementById('counter9'), name: 'Nathan' }
       ];
       const middleCountdownElement = document.getElementById('middleCountdown');
       const rightCountdownElement = document.getElementById('rightCountdown');
 
       // Initialize values
-      let scores = Array(6).fill(0);
+      let scores = Array(9).fill(0); // Updated to accommodate 9 names
       let middleCountdown = 20;
       let rightCountdown = 0;
 
@@ -127,7 +133,7 @@
       // Handle keypress for actions
       document.addEventListener('keypress', (event) => {
         const key = event.key.toLowerCase();
-        if (key >= '1' && key <= '6') {
+        if (key >= '1' && key <= '9') {
           const index = parseInt(key) - 1;
           scores[index]++;
           updateNameCounters();
