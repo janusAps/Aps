@@ -57,15 +57,14 @@
   </head>
   <body>
     <div class="left" id="nameList">
-      <div class="counter" id="counter1">0 Chris</div>
-      <div class="counter" id="counter2">0 James</div>
-      <div class="counter" id="counter3">0 Michael</div>
-      <div class="counter" id="counter4">0 Alex</div>
-      <div class="counter" id="counter5">0 Amber</div>
-      <div class="counter" id="counter6">0 Rayan</div>
-      <div class="counter" id="counter7">0 Denis</div>
-      <div class="counter" id="counter8">0 Ashley</div>
-      <div class="counter" id="counter9">0 Nathan</div>
+      <div class="counter" id="counter1">0 Chris Johnson</div>
+      <div class="counter" id="counter2">0 James Hardy</div>
+      <div class="counter" id="counter3">0 Michael Edwards</div>
+      <div class="counter" id="counter4">0 Adele Jones</div>
+      <div class="counter" id="counter5">0 Dennis Martin</div>
+      <div class="counter" id="counter6">0 Ashley Moore</div>
+      <div class="counter" id="counter7">0 Rayan Johnes</div>
+      <div class="counter" id="counter8">0 Sharon Smith</div>
     </div>
 
     <div class="center">
@@ -81,21 +80,20 @@
     <script>
       // References to counters and countdowns
       const counters = [
-        { element: document.getElementById('counter1'), name: 'Chris' },
-        { element: document.getElementById('counter2'), name: 'James' },
-        { element: document.getElementById('counter3'), name: 'Michael' },
-        { element: document.getElementById('counter4'), name: 'Alex' },
-        { element: document.getElementById('counter5'), name: 'Amber' },
-        { element: document.getElementById('counter6'), name: 'Rayan' },
-        { element: document.getElementById('counter7'), name: 'Denis' },
-        { element: document.getElementById('counter8'), name: 'Ashley' },
-        { element: document.getElementById('counter9'), name: 'Nathan' }
+        { element: document.getElementById('counter1'), name: 'Chris Johnson' },
+        { element: document.getElementById('counter2'), name: 'James Hardy' },
+        { element: document.getElementById('counter3'), name: 'Michael Edwards' },
+        { element: document.getElementById('counter4'), name: 'Adele Jones' },
+        { element: document.getElementById('counter5'), name: 'Dennis Martin' },
+        { element: document.getElementById('counter6'), name: 'Ashley Moore' },
+        { element: document.getElementById('counter7'), name: 'Rayan Johnes' },
+        { element: document.getElementById('counter8'), name: 'Sharon Smith' }
       ];
       const middleCountdownElement = document.getElementById('middleCountdown');
       const rightCountdownElement = document.getElementById('rightCountdown');
 
       // Initialize values
-      let scores = Array(9).fill(0); // Updated to accommodate 9 names
+      let scores = Array(8).fill(0); // Updated to accommodate 8 names
       let middleCountdown = 20;
       let rightCountdown = 0;
 
@@ -133,7 +131,7 @@
       // Handle keypress for actions
       document.addEventListener('keypress', (event) => {
         const key = event.key.toLowerCase();
-        if (key >= '1' && key <= '9') {
+        if (key >= '1' && key <= '8') {
           const index = parseInt(key) - 1;
           scores[index]++;
           updateNameCounters();
