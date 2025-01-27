@@ -4,55 +4,54 @@
     <style>
       body {
         display: flex;
+        flex-direction: column;
         margin: 0;
         padding: 0;
         height: 100vh;
         background-color: black;
         font-family: 'Arial Black', sans-serif;
         color: white;
-        justify-content: center;
-        align-items: center;
         overflow: hidden;
-        flex-direction: column;
-      }
-      .countdown-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 1000px; /* Limit width of counters */
         align-items: center;
-        gap: 40px; /* Add more space between counters */
-      }
-      .countdown {
-        font-weight: bold;
-        margin: 0;
-      }
-      .middle-counter {
-        font-size: 60vh;
-        color: yellow;
-      }
-      .right-counter {
-        font-size: 60vh;
-        color: red;
       }
       .logo {
-        width: 37.5%; /* Reduced logo size to half */
-        margin-bottom: 40px; /* Increased margin to push the logo lower */
-        object-fit: contain;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        width: 30%; /* 30% of the screen width */
+        margin-top: 20px; /* Add some space at the top */
+      }
+      .counters {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .counter {
+        font-size: 35vh; /* Double the last size (17.5vh * 2 = 35vh) */
+        font-weight: bold;
+        line-height: 1.2;
+      }
+      #leftCounter {
+        color: #ffd900; /* Yellow color for the left counter */
+        position: absolute;
+        left: 25%; /* Position in the middle of the left half */
+        transform: translateX(-50%); /* Center horizontally */
+      }
+      #rightCounter {
+        color: red; /* Red color for the right counter */
+        position: absolute;
+        right: 25%; /* Position in the middle of the right half */
+        transform: translateX(50%); /* Center horizontally */
       }
     </style>
   </head>
   <body>
-    <!-- Image horizontally centered above the counters -->
+    <!-- Logo at the top, centered horizontally -->
     <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
 
-    <!-- Countdown container with both counters -->
-    <div class="countdown-container">
-      <div class="countdown middle-counter" id="leftCounter">16</div>
-      <div class="countdown right-counter" id="rightCounter">0</div>
+    <!-- Counters -->
+    <div class="counters">
+      <div class="counter" id="leftCounter">16</div>
+      <div class="counter" id="rightCounter">0</div>
     </div>
 
     <script>
@@ -64,67 +63,44 @@
       let leftCounter = 16;
       let rightCounter = 0;
 
-      // Update counters
-      function updateLeftCounter() {
-        leftCounterElement.textContent = leftCounter;
-      }
-
-      function updateRightCounter() {
-        rightCounterElement.textContent = rightCounter;
-      }
-
-      // Reset all values
-      function resetAll() {
-        leftCounter = 16;
-        rightCounter = 0;
-        updateLeftCounter();
-        updateRightCounter();
-      }
-
-      // Full-screen toggle
-      function toggleFullScreen() {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
-        } else if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      }
-
-      // Handle mouse clicks for actions
-      document.addEventListener('mousedown', (event) => {
-        if (event.button === 0) {
-          // Left mouse button decreases left counter
+      // Update left counter (decrease on left mouse click)
+      document.addEventListener('click', (event) => {
+        if (event.button === 0) { // Left mouse button
           if (leftCounter > 0) {
             leftCounter--;
-            updateLeftCounter();
+            leftCounterElement.textContent = leftCounter;
           }
-        } else if (event.button === 2) {
-          // Right mouse button increases right counter
-          rightCounter++;
-          updateRightCounter();
         }
       });
 
-      // Handle keypress for actions
-      document.addEventListener('keypress', (event) => {
-        const key = event.key;
-        if (key === 'Enter') {
-          toggleFullScreen(); // Full screen with "Enter"
-        } else if (key === '0') {
-          resetAll(); // Reset all counters with "0"
-        }
-      });
-
-      // Prevent default context menu on right-click
+      // Update right counter (increase on right mouse click)
       document.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Prevent the context menu from appearing
+        rightCounter++;
+        rightCounterElement.textContent = rightCounter;
       });
 
-      // Initialize counters
-      updateLeftCounter();
-      updateRightCounter();
+      // Enter key to toggle fullscreen
+      document.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen(); // Enter fullscreen
+          } else {
+            document.exitFullscreen(); // Exit fullscreen
+          }
+        }
+      });
+
+      // Reset counters on '0' keypress
+      document.addEventListener('keypress', (event) => {
+        if (event.key === '0') {
+          leftCounter = 16;
+          rightCounter = 0;
+          leftCounterElement.textContent = leftCounter;
+          rightCounterElement.textContent = rightCounter;
+        }
+      });
     </script>
   </body>
 </html>
-
 
