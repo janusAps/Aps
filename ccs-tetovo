@@ -50,7 +50,7 @@
 
     <!-- Counters -->
     <div class="counters">
-      <div class="counter" id="leftCounter">16</div>
+      <div class="counter" id="leftCounter">20</div>
       <div class="counter" id="rightCounter">0</div>
     </div>
 
@@ -94,7 +94,7 @@
       // Reset counters on '0' keypress
       document.addEventListener('keypress', (event) => {
         if (event.key === '0') {
-          leftCounter = 16;
+          leftCounter = 20;
           rightCounter = 0;
           leftCounterElement.textContent = leftCounter;
           rightCounterElement.textContent = rightCounter;
