@@ -21,6 +21,7 @@
         width: 100%;
         max-width: 1000px; /* Limit width of counters */
         align-items: center;
+        gap: 40px; /* Add more space between counters */
       }
       .countdown {
         font-weight: bold;
@@ -35,8 +36,8 @@
         color: red;
       }
       .logo {
-        width: 75%;
-        margin-bottom: 20px;
+        width: 37.5%; /* Reduced logo size to half */
+        margin-bottom: 40px; /* Increased margin to push the logo lower */
         object-fit: contain;
         display: block;
         margin-left: auto;
@@ -125,4 +126,5 @@
     </script>
   </body>
 </html>
+
 
