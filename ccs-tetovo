@@ -12,24 +12,8 @@
         color: white;
         overflow: hidden;
       }
-      .left {
-        width: 33.33%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding-left: 20px;
-        gap: 1vh;
-        overflow-y: auto;
-      }
-      .counter {
-        color: #ffd900;
-        font-size: 7vh;
-        font-weight: bold;
-        line-height: 1.2;
-      }
       .center, .right {
-        width: 33.33%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -42,111 +26,101 @@
       }
       .middle-counter {
         font-size: 60vh;
-        color: white;
-        margin-top: -15vh; /* Move it up by 25% of its original size */
+        color: yellow;
       }
       .right-counter {
-        font-size: 20vh;
+        font-size: 60vh;
         color: red;
       }
       .logo {
-        width: 75%; /* 50% bigger than 50% */
+        width: 75%;
         margin-bottom: 20px;
+        object-fit: contain;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
     </style>
   </head>
   <body>
-    <div class="left" id="nameList">
-      <div class="counter" id="counter1">0 Chris</div>
-      <div class="counter" id="counter2">0 James</div>
-      <div class="counter" id="counter3">0 Michael</div>
-      <div class="counter" id="counter4">0 Adele</div>
-      <div class="counter" id="counter5">0 Dennis</div>
-      <div class="counter" id="counter6">0 Ashley</div>
-      <div class="counter" id="counter7">0 Rayan</div>
-      <div class="counter" id="counter8">0 Sharon</div>
-    </div>
-
     <div class="center">
-      <!-- Add the logo above the middle counter -->
+      <!-- Add the logo above the left counter -->
       <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
-      <div class="countdown middle-counter" id="middleCountdown">20</div>
+      <div class="countdown middle-counter" id="leftCounter">16</div>
     </div>
 
     <div class="right">
-      <div class="countdown right-counter" id="rightCountdown">0</div>
+      <div class="countdown right-counter" id="rightCounter">0</div>
     </div>
 
     <script>
-      // References to counters and countdowns
-      const counters = [
-        { element: document.getElementById('counter1'), name: 'Chris' },
-        { element: document.getElementById('counter2'), name: 'James' },
-        { element: document.getElementById('counter3'), name: 'Michael' },
-        { element: document.getElementById('counter4'), name: 'Adele' },
-        { element: document.getElementById('counter5'), name: 'Dennis' },
-        { element: document.getElementById('counter6'), name: 'Ashley' },
-        { element: document.getElementById('counter7'), name: 'Rayan' },
-        { element: document.getElementById('counter8'), name: 'Sharon' }
-      ];
-      const middleCountdownElement = document.getElementById('middleCountdown');
-      const rightCountdownElement = document.getElementById('rightCountdown');
+      // References to counters
+      const leftCounterElement = document.getElementById('leftCounter');
+      const rightCounterElement = document.getElementById('rightCounter');
 
       // Initialize values
-      let scores = Array(8).fill(0); // Updated to accommodate 8 names
-      let middleCountdown = 20;
-      let rightCountdown = 0;
+      let leftCounter = 16;
+      let rightCounter = 0;
 
-      // Update name counters
-      function updateNameCounters() {
-        counters.forEach((counter, index) => {
-          counter.element.textContent = `${scores[index]} ${counter.name}`;
-        });
+      // Update counters
+      function updateLeftCounter() {
+        leftCounterElement.textContent = leftCounter;
       }
 
-      // Decrease middle counter
-      function decreaseMiddleCounter() {
-        if (middleCountdown > 0) {
-          middleCountdown--;
-          middleCountdownElement.textContent = middleCountdown;
-        }
-      }
-
-      // Increase right counter
-      function increaseRightCounter() {
-        rightCountdown++;
-        rightCountdownElement.textContent = rightCountdown;
+      function updateRightCounter() {
+        rightCounterElement.textContent = rightCounter;
       }
 
       // Reset all values
       function resetAll() {
-        scores.fill(0);
-        middleCountdown = 20;
-        rightCountdown = 0;
-        middleCountdownElement.textContent = middleCountdown;
-        rightCountdownElement.textContent = rightCountdown;
-        updateNameCounters();
+        leftCounter = 16;
+        rightCounter = 0;
+        updateLeftCounter();
+        updateRightCounter();
       }
 
-      // Handle keypress for actions
-      document.addEventListener('keypress', (event) => {
-        const key = event.key.toLowerCase();
-        if (key >= '1' && key <= '8') {
-          const index = parseInt(key) - 1;
-          scores[index]++;
-          updateNameCounters();
-          decreaseMiddleCounter(); // Decrease middle counter when name key is pressed
-        } else if (key === 'd') {
-          decreaseMiddleCounter(); // Decrease middle counter with "D"
-        } else if (key === 'enter') {
-          increaseRightCounter(); // Increase right counter with "Enter"
-        } else if (key === 'r') {
-          resetAll(); // Reset all counters
+      // Full-screen toggle
+      function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+
+      // Handle mouse clicks for actions
+      document.addEventListener('mousedown', (event) => {
+        if (event.button === 0) {
+          // Left mouse button decreases left counter
+          if (leftCounter > 0) {
+            leftCounter--;
+            updateLeftCounter();
+          }
+        } else if (event.button === 2) {
+          // Right mouse button increases right counter
+          rightCounter++;
+          updateRightCounter();
         }
       });
 
+      // Handle keypress for actions
+      document.addEventListener('keypress', (event) => {
+        const key = event.key;
+        if (key === 'Enter') {
+          toggleFullScreen(); // Full screen with "Enter"
+        } else if (key === '0') {
+          resetAll(); // Reset all counters with "0"
+        }
+      });
+
+      // Prevent default context menu on right-click
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+
       // Initialize counters
-      updateNameCounters();
+      updateLeftCounter();
+      updateRightCounter();
     </script>
   </body>
 </html>
