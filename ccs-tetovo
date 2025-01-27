@@ -60,7 +60,7 @@
       const rightCounterElement = document.getElementById('rightCounter');
 
       // Initialize values
-      let leftCounter = 16;
+      let leftCounter = 20;
       let rightCounter = 0;
 
       // Update left counter (decrease on left mouse click)
