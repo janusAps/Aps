@@ -1,22 +1,24 @@
-<!-- Add Firebase SDK to your HTML -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-<script>
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAdSCcc2fV94JUS4R2yK-1or3L0SlL36E8",
+  authDomain: "scoreboard-dd9ec.firebaseapp.com",
+  projectId: "scoreboard-dd9ec",
+  storageBucket: "scoreboard-dd9ec.firebasestorage.app",
+  messagingSenderId: "498157490925",
+  appId: "1:498157490925:web:da60fc2d85e6089229f2e4",
+  measurementId: "G-N50YPCRPLD"
+};
 
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
   // References to counters
   const leftCounterElement = document.getElementById('leftCounter');
