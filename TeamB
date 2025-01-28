@@ -1,67 +1,57 @@
-const numberDisplay = document.getElementById('number');
-let count = 10;
+<!-- Add Firebase SDK to your HTML -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
 
-const updateNumberDisplay = () => {
-    numberDisplay.innerText = count;
-};
+<script>
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-const countdown = () => {
-    document.oncontextmenu = (e) => {
-        e.preventDefault();
-        if (count > 0) {
-            count--;
-            updateNumberDisplay();
-            document.getElementById('audio').play();
-        }
-    };
-};
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 
-const resetCount = () => {
-    document.addEventListener('keydown', event => {
-        if (event.code === 'Space') {
-            event.preventDefault();
-            count = 10;
-            updateNumberDisplay();
-        }
-    });
-};
+  // References to counters
+  const leftCounterElement = document.getElementById('leftCounter');
+  const rightCounterElement = document.getElementById('rightCounter');
 
-const toggleFullScreen = () => {
-    if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-        if (document.documentElement.requestFullScreen) {
-            document.documentElement.requestFullScreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-            /* Firefox */
-            document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullScreen) {
-            /* Chrome, Safari & Opera */
-            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (document.msRequestFullscreen) {
-            /* IE/Edge */
-            document.documentElement.msRequestFullscreen();
-        }
-    } else {
-        if (document.cancelFullScreen) {
-            document.cancelFullScreen();
-        } else if (document.mozCancelFullScreen) {
-            /* Firefox */
-            document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-            /* Chrome, Safari and Opera */
-            document.webkitCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-            /* IE/Edge */
-            document.msExitFullscreen();
-        }
+  // Initialize values from Firebase
+  database.ref('counters').on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      leftCounterElement.textContent = data.leftCounter;
+      rightCounterElement.textContent = data.rightCounter;
     }
-};
+  });
 
-document.addEventListener('keydown', event => {
-    if (event.code === 'Enter') {
-        toggleFullScreen();
+  // Update left counter (decrease on left mouse click)
+  document.addEventListener('click', (event) => {
+    if (event.button === 0) { // Left mouse button
+      const leftCounter = parseInt(leftCounterElement.textContent);
+      if (leftCounter > 0) {
+        database.ref('counters').update({ leftCounter: leftCounter - 1 });
+      }
     }
-});
+  });
 
-updateNumberDisplay();
-countdown();
-resetCount();
+  // Update right counter (increase on right mouse click)
+  document.addEventListener('contextmenu', (event) => {
+    event.preventDefault(); // Prevent the context menu from appearing
+    const rightCounter = parseInt(rightCounterElement.textContent);
+    database.ref('counters').update({ rightCounter: rightCounter + 1 });
+  });
+
+  // Reset counters on '0' keypress
+  document.addEventListener('keypress', (event) => {
+    if (event.key === '0') {
+      database.ref('counters').update({ leftCounter: 16, rightCounter: 0 });
+    }
+  });
+</script>
