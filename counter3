@@ -1,74 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Real-time Counter</title>
     <style>
       body {
-        background-color: #1e4e70;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: black;
         font-family: 'Arial Black', sans-serif;
+        color: white;
+        overflow: hidden;
+        align-items: center;
+      }
+      .logo {
+        width: 30%; /* 30% of the screen width */
+        margin-top: 20px; /* Add some space at the top */
+      }
+      .counters {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
       }
       .counter {
-        color: #ffd900;
-        margin-bottom: 5px;
-        font-size: 9vh;
+        font-size: 70vh; /* Double the last size (35vh * 2 = 70vh) */
         font-weight: bold;
+        line-height: 1.2;
       }
-      .counter-white {
-        color: white;
-        margin-bottom: 5px;
-        font-size: 9vh;
-        font-weight: bold;
+      #leftCounter {
+        color: #ffd900; /* Yellow color for the left counter */
+        position: absolute;
+        left: 25%; /* Position in the middle of the left half */
+        transform: translateX(-50%); /* Center horizontally */
+      }
+      #rightCounter {
+        color: red; /* Red color for the right counter */
+        position: absolute;
+        right: 25%; /* Position in the middle of the right half */
+        transform: translateX(50%); /* Center horizontally */
       }
     </style>
   </head>
   <body>
-    <div class="counter" id="counter1">0 Mia</div>
-    <div class="counter" id="counter2">0 Bobby</div>
+    <!-- Logo at the top, centered horizontally -->
+    <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
 
-    <script>
-      // Get references to the counter elements
-      const counter1 = document.getElementById('counter1');
-      const counter2 = document.getElementById('counter2');
+    <!-- Counters -->
+    <div class="counters">
+      <div class="counter" id="leftCounter">20</div>
+      <div class="counter" id="rightCounter">0</div>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC1AeR9HBgO2pWBWhRpqEBPznN7z6odKb0",
+        authDomain: "sc2a-48d4c.firebaseapp.com",
+        databaseURL: "https://sc2a-48d4c-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "sc2a-48d4c",
+        storageBucket: "sc2a-48d4c.appspot.com",
+        messagingSenderId: "857948361425",
+        appId: "1:857948361425:web:85be14d7b0f1d1b79eabf0"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      // References to counters in the Realtime Database
+      const leftCounterRef = ref(database, "counters/left");
+      const rightCounterRef = ref(database, "counters/right");
+
+      // References to HTML elements
+      const leftCounterElement = document.getElementById("leftCounter");
+      const rightCounterElement = document.getElementById("rightCounter");
 
       // Initialize counters
-      let count1 = 0;
-      let count2 = 0;
+      let leftCounter = 20;
+      let rightCounter = 0;
 
-      // Update counter values and font sizes on the screen
+      // Sync counters from Firebase in real-time
+      onValue(leftCounterRef, (snapshot) => {
+        leftCounter = snapshot.val();
+        leftCounterElement.textContent = leftCounter;
+      });
+
+      onValue(rightCounterRef, (snapshot) => {
+        rightCounter = snapshot.val();
+        rightCounterElement.textContent = rightCounter;
+      });
+
+      // Function to update counters in the database
       function updateCounters() {
-        const maxHeight = window.innerHeight * 0.8; // Maximum height for the counters
-        const baseFontSize = Math.floor(maxHeight / 10); // Base font size based on the height
-
-        counter1.textContent = `${count1} Mia`;
-        counter1.style.fontSize = `${baseFontSize * 1.2}px`;
-
-        counter2.textContent = `${count2} Bobby`;
-        counter2.style.fontSize = `${baseFontSize * 1.2}px`;
-
+        set(leftCounterRef, leftCounter);
+        set(rightCounterRef, rightCounter);
       }
 
-      // Increment or decrement counters based on keypress
-      function handleKeyPress(event) {
-        const key = event.key;
-        if (key === '1') {
-          count1++;
-        } else if (key === '2') {
-          count2++;
-
-        } else if (key === '0') {
-          // Reset all counters to zero
-          count1 = 0;
-          count2 = 0;
-
+      // Update left counter on click
+      document.addEventListener("click", (event) => {
+        if (event.button === 0 && leftCounter > 0) {
+          leftCounter--;
+          updateCounters();
         }
+      });
 
+      // Update right counter on right-click
+      document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        rightCounter++;
         updateCounters();
-      }
+      });
 
-      // Attach event listener to the document for keypress events
-      document.addEventListener('keypress', handleKeyPress);
-
-      // Call the updateCounters function initially to set the font sizes
-      updateCounters();
+      // Reset counters on '0' keypress
+      document.addEventListener("keypress", (event) => {
+        if (event.key === "0") {
+          leftCounter = 20;
+          rightCounter = 0;
+          updateCounters();
+        }
+      });
     </script>
   </body>
 </html>
