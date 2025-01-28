@@ -55,22 +55,16 @@
     </div>
 
     <!-- Add Firebase SDK -->
-    <script type="module">
-      // Import the functions you need from the Firebase SDK
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-      import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyAdSCcc2fV94JUS4R2yK-1or3L0SlL36E8",
-        authDomain: "scoreboard-dd9ec.firebaseapp.com",
-        databaseURL: "https://scoreboard-dd9ec-default-rtdb.firebaseio.com", // Add your database URL
-        projectId: "scoreboard-dd9ec",
-        storageBucket: "scoreboard-dd9ec.appspot.com",
-        messagingSenderId: "498157490925",
-        appId: "1:498157490925:web:da60fc2d85e6089229f2e4",
-        measurementId: "G-N50YPCRPLD"
-      };
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAdSCcc2fV94JUS4R2yK-1or3L0SlL36E8",
+  authDomain: "scoreboard-dd9ec.firebaseapp.com",
+  projectId: "scoreboard-dd9ec",
+  storageBucket: "scoreboard-dd9ec.firebasestorage.app",
+  messagingSenderId: "498157490925",
+  appId: "1:498157490925:web:da60fc2d85e6089229f2e4",
+  measurementId: "G-N50YPCRPLD"
+};
 
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
