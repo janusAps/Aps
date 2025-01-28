@@ -1,59 +1,118 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAdSCcc2fV94JUS4R2yK-1or3L0SlL36E8",
-  authDomain: "scoreboard-dd9ec.firebaseapp.com",
-  projectId: "scoreboard-dd9ec",
-  storageBucket: "scoreboard-dd9ec.firebasestorage.app",
-  messagingSenderId: "498157490925",
-  appId: "1:498157490925:web:da60fc2d85e6089229f2e4",
-  measurementId: "G-N50YPCRPLD"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-  // References to counters
-  const leftCounterElement = document.getElementById('leftCounter');
-  const rightCounterElement = document.getElementById('rightCounter');
-
-  // Initialize values from Firebase
-  database.ref('counters').on('value', (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-      leftCounterElement.textContent = data.leftCounter;
-      rightCounterElement.textContent = data.rightCounter;
-    }
-  });
-
-  // Update left counter (decrease on left mouse click)
-  document.addEventListener('click', (event) => {
-    if (event.button === 0) { // Left mouse button
-      const leftCounter = parseInt(leftCounterElement.textContent);
-      if (leftCounter > 0) {
-        database.ref('counters').update({ leftCounter: leftCounter - 1 });
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: black;
+        font-family: 'Arial Black', sans-serif;
+        color: white;
+        overflow: hidden;
+        align-items: center;
       }
-    }
-  });
+      .logo {
+        width: 30%; /* 30% of the screen width */
+        margin-top: 20px; /* Add some space at the top */
+      }
+      .counters {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .counter {
+        font-size: 70vh; /* Double the last size (35vh * 2 = 70vh) */
+        font-weight: bold;
+        line-height: 1.2;
+      }
+      #leftCounter {
+        color: #ffd900; /* Yellow color for the left counter */
+        position: absolute;
+        left: 25%; /* Position in the middle of the left half */
+        transform: translateX(-50%); /* Center horizontally */
+      }
+      #rightCounter {
+        color: red; /* Red color for the right counter */
+        position: absolute;
+        right: 25%; /* Position in the middle of the right half */
+        transform: translateX(50%); /* Center horizontally */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo at the top, centered horizontally -->
+    <img src="https://i.imgur.com/ZR9aYMQ.jpeg" alt="Logo" class="logo" />
 
-  // Update right counter (increase on right mouse click)
-  document.addEventListener('contextmenu', (event) => {
-    event.preventDefault(); // Prevent the context menu from appearing
-    const rightCounter = parseInt(rightCounterElement.textContent);
-    database.ref('counters').update({ rightCounter: rightCounter + 1 });
-  });
+    <!-- Counters -->
+    <div class="counters">
+      <div class="counter" id="leftCounter">16</div>
+      <div class="counter" id="rightCounter">0</div>
+    </div>
 
-  // Reset counters on '0' keypress
-  document.addEventListener('keypress', (event) => {
-    if (event.key === '0') {
-      database.ref('counters').update({ leftCounter: 16, rightCounter: 0 });
-    }
-  });
-</script>
+    <!-- Add Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the Firebase SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAdSCcc2fV94JUS4R2yK-1or3L0SlL36E8",
+        authDomain: "scoreboard-dd9ec.firebaseapp.com",
+        databaseURL: "https://scoreboard-dd9ec-default-rtdb.firebaseio.com", // Add your database URL
+        projectId: "scoreboard-dd9ec",
+        storageBucket: "scoreboard-dd9ec.appspot.com",
+        messagingSenderId: "498157490925",
+        appId: "1:498157490925:web:da60fc2d85e6089229f2e4",
+        measurementId: "G-N50YPCRPLD"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      // References to counters
+      const leftCounterElement = document.getElementById('leftCounter');
+      const rightCounterElement = document.getElementById('rightCounter');
+
+      // Initialize values from Firebase
+      const countersRef = ref(database, 'counters');
+      onValue(countersRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          leftCounterElement.textContent = data.leftCounter;
+          rightCounterElement.textContent = data.rightCounter;
+        }
+      });
+
+      // Update left counter (decrease on left mouse click)
+      document.addEventListener('click', (event) => {
+        if (event.button === 0) { // Left mouse button
+          const leftCounter = parseInt(leftCounterElement.textContent);
+          if (leftCounter > 0) {
+            update(countersRef, { leftCounter: leftCounter - 1 });
+          }
+        }
+      });
+
+      // Update right counter (increase on right mouse click)
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault(); // Prevent the context menu from appearing
+        const rightCounter = parseInt(rightCounterElement.textContent);
+        update(countersRef, { rightCounter: rightCounter + 1 });
+      });
+
+      // Reset counters on '0' keypress
+      document.addEventListener('keypress', (event) => {
+        if (event.key === '0') {
+          update(countersRef, { leftCounter: 16, rightCounter: 0 });
+        }
+      });
+    </script>
+  </body>
+</html>
