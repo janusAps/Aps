@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Newsletter Generator</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background:#f7f7f7; }
+  h1 { color:#333; }
+  .input-section { margin-bottom: 20px; }
+  textarea, input { width: 100%; padding:10px; margin-top:5px; border-radius:6px; border:1px solid #ccc; }
+  button { padding:10px 15px; border:none; border-radius:6px; background:#0066cc; color:#fff; cursor:pointer; margin-top:10px; margin-right:10px; }
+  button:hover { background:#004a99; }
+  .output { margin-top:30px; }
+  .preview { border:1px solid #ddd; background:#fff; padding:20px; border-radius:8px; }
+  pre { white-space: pre-wrap; background:#eee; padding:15px; border-radius:8px; }
+  .article-block { margin-bottom:20px; padding:10px; border:1px solid #ddd; border-radius:6px; background:#fff; }
+</style>
+</head>
+<body>
+
+<h1>APS Intranet Insider Generator</h1>
+
+<div class="input-section">
+  <label><b>Date:</b></label>
+  <input type="text" id="newsletterDate" placeholder="e.g. October 2, 2025">
+</div>
+
+<div id="articles"></div>
+
+<button onclick="addArticle()">+ Add Article</button>
+<br><br>
+<button onclick="generateNewsletter()">Generate Newsletter</button>
+<button onclick="copyPreview()">📋 Copy Newsletter to Clipboard</button>
+<button onclick="downloadHTML()">💾 Download as HTML File</button>
+
+<div class="output">
+  <h2>Preview:</h2>
+  <div id="preview" class="preview"></div>
+  
+  <h2>HTML Code:</h2>
+  <pre id="outputCode"></pre>
+</div>
+
+<script>
+let articleCount = 0;
+let finalHTML = "";
+
+function addArticle() {
+  articleCount++;
+  const container = document.getElementById("articles");
+  const block = document.createElement("div");
+  block.className = "article-block";
+  block.innerHTML = `
+    <h3>Article ${articleCount}</h3>
+    <label>Title:</label>
+    <input type="text" class="title" placeholder="Article title"><br><br>
+    <label>Description:</label>
+    <textarea class="desc" rows="3" placeholder="Short summary (optional)"></textarea><br><br>
+    <label>Link:</label>
+    <input type="text" class="link" placeholder="https://..."><br><br>
+    <label>Image URL (optional):</label>
+    <input type="text" class="img" placeholder="https://...">
+  `;
+  container.appendChild(block);
+}
+
+function generateNewsletter() {
+  const date = document.getElementById("newsletterDate").value;
+  const articles = document.querySelectorAll(".article-block");
+
+  let articlesHTML = "";
+  articles.forEach(a => {
+    const title = a.querySelector(".title").value;
+    const desc = a.querySelector(".desc").value;
+    const link = a.querySelector(".link").value;
+    const img = a.querySelector(".img").value;
+
+    articlesHTML += `
+      <tr>
+        <td style="padding:15px; border-bottom:1px solid #ddd;">
+          ${img ? `<img src="${img}" alt="" style="max-width:100%; border-radius:6px; margin-bottom:10px;">` : ""}
+          <a href="${link}" style="font-size:18px; font-weight:bold; color:#0066cc; text-decoration:none;">
+            ${title}
+          </a>
+          ${desc ? `<p style="margin:8px 0; color:#555;">${desc}</p>` : ""}
+          <a href="${link}" style="color:#0066cc; text-decoration:none;">Read more →</a>
+        </td>
+      </tr>
+    `;
+  });
+
+  finalHTML = `
+  <!DOCTYPE html>
+  <html>
+  <body style="font-family:Arial,sans-serif; background:#f4f4f4; margin:0; padding:20px;">
+    <table align="center" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; padding:20px;">
+      <tr>
+        <td align="center" style="padding:20px 0; font-size:22px; font-weight:bold; color:#333;">
+          APS Intranet Insider – ${date}
+        </td>
+      </tr>
+      ${articlesHTML}
+      <tr>
+        <td align="center" style="padding:20px; font-size:12px; color:#aaa;">
+          © 2025 APS – Internal Use Only
+        </td>
+      </tr>
+    </table>
+  </body>
+  </html>`;
+
+  document.getElementById("preview").innerHTML = finalHTML;
+  document.getElementById("outputCode").textContent = finalHTML;
+}
+
+function copyPreview() {
+  const preview = document.getElementById("preview");
+  if (!preview.innerHTML.trim()) {
+    alert("⚠️ Please generate the newsletter first!");
+    return;
+  }
+
+  const range = document.createRange();
+  range.selectNode(preview);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+
+  try {
+    document.execCommand("copy");
+    alert("✅ Newsletter copied! Now paste into Outlook/Gmail.");
+  } catch (err) {
+    alert("❌ Copy failed. Please select the preview manually.");
+  }
+
+  window.getSelection().removeAllRanges();
+}
+
+function downloadHTML() {
+  if (!finalHTML.trim()) {
+    alert("⚠️ Please generate the newsletter first!");
+    return;
+  }
+
+  const blob = new Blob([finalHTML], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "APS-Intranet-Insider.html";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
